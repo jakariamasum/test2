@@ -1,9 +1,14 @@
 import { Router } from "express";
 import { languageRoutes } from "../module/language/language.route";
+import { userRoutes } from "../module/user/user.route";
 
 const router = Router();
 
 const moduleRoutes = [
+  {
+    path: "/user",
+    route: userRoutes,
+  },
   {
     path: "/language",
     route: languageRoutes,
