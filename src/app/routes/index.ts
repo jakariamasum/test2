@@ -5,6 +5,7 @@ import { settingRoutes } from "../module/settings/settings.route";
 import { categoryRoutes } from "../module/category/category.route";
 import { newsRoutes } from "../module/news/news.route";
 import { mediaRoutes } from "../module/media/media.route";
+import { analyticsRoutes } from "../module/analytics/analytics.route";
 
 const router = Router();
 
@@ -28,6 +29,10 @@ const moduleRoutes = [
   {
     path: "/media",
     route: mediaRoutes,
+  },
+  {
+    path: "/analytics",
+    route: analyticsRoutes,
   },
   {
     path: "/settings",
