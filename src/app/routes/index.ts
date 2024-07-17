@@ -3,6 +3,7 @@ import { languageRoutes } from "../module/language/language.route";
 import { userRoutes } from "../module/user/user.route";
 import { settingRoutes } from "../module/settings/settings.route";
 import { categoryRoutes } from "../module/category/category.route";
+import { newsRoutes } from "../module/news/news.route";
 
 const router = Router();
 
@@ -14,6 +15,10 @@ const moduleRoutes = [
   {
     path: "/language",
     route: languageRoutes,
+  },
+  {
+    path: "/news",
+    route: newsRoutes,
   },
   {
     path: "/categories",
