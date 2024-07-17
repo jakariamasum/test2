@@ -1,13 +1,23 @@
 import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcrypt";
-import { TUser } from "./user.interface";
 import config from "../../../config";
+import { TUser } from "./user.interface";
 
 const UserSchema: Schema = new Schema<TUser>(
   {
     username: {
       type: String,
       required: true,
+    },
+    name: {
+      firstName: {
+        type: String,
+        required: true,
+      },
+      lastName: {
+        type: String,
+        required: true,
+      },
     },
     password: {
       type: String,
@@ -18,7 +28,6 @@ const UserSchema: Schema = new Schema<TUser>(
       required: true,
       unique: true,
     },
-    name: String,
     role: {
       type: String,
       enum: ["reader", "journalist", "editor", "admin"],
@@ -31,10 +40,6 @@ const UserSchema: Schema = new Schema<TUser>(
       facebook: String,
       linkedin: String,
       website: String,
-    },
-    preferences: {
-      categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
-      tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
     },
   },
   {

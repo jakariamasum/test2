@@ -1,5 +1,10 @@
 import { Types } from "mongoose";
 
+export type TName = {
+  firstName: string;
+  lastName: string;
+};
+
 export type TSocialLinks = {
   twitter?: string;
   facebook?: string;
@@ -7,19 +12,13 @@ export type TSocialLinks = {
   website?: string;
 };
 
-export type TPreferences = {
-  categories: Types.ObjectId[];
-  tags: Types.ObjectId[];
-};
-
 export type TUser = {
   username: string;
   password: string;
   email: string;
-  name: string;
+  name: TName;
   role: "reader" | "journalist" | "editor" | "admin";
   profile_picture?: string;
   bio?: string;
   social_links?: TSocialLinks;
-  preferences?: TPreferences;
 };
