@@ -10,6 +10,10 @@ const getNewsFromDB = async () => {
   const result = await News.find();
   return result;
 };
+const getSingleNewsFromDB = async (id: string) => {
+  const result = await News.findOne({ _id: id });
+  return result;
+};
 const updateNewsIntoDB = async (id: string, payload: Partial<TNews>) => {
   const result = await News.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
@@ -25,6 +29,7 @@ const deleteNewsFromDB = async (id: string) => {
 export const newsServices = {
   createNewsIntoDB,
   getNewsFromDB,
+  getSingleNewsFromDB,
   updateNewsIntoDB,
   deleteNewsFromDB,
 };

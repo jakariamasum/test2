@@ -3,8 +3,16 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import AppError from "../../errors/AppError";
 import { bookmarkServices } from "./bookmark.service";
+import { newsServices } from "../news/news.service";
+import { userServices } from "../user/user.service";
 
 const createBookmark = catchAsync(async (req, res) => {
+  const { news_id, user_id } = req.body;
+  const news = await newsServices.getSingleNewsFromDB(news_id);
+  const user = await userServices.getSingleUserFromDB(user_id);
+  if (!news || !user) {
+    throw new AppError(404, "No data found");
+  }
   const result = await bookmarkServices.createBookmarkIntoDB(req.body);
   console.log(result);
   sendResponse(res, {

@@ -3,8 +3,14 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import AppError from "../../errors/AppError";
 import { mediaServices } from "./media.service";
+import { newsServices } from "../news/news.service";
 
 const createMedia = catchAsync(async (req, res) => {
+  const { news_id } = req.body;
+  const news = await newsServices.getSingleNewsFromDB(news_id);
+  if (!news) {
+    throw new AppError(404, "No data found");
+  }
   const result = await mediaServices.createmediaIntoDB(req.body);
   console.log(result);
   sendResponse(res, {
