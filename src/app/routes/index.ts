@@ -6,6 +6,8 @@ import { categoryRoutes } from "../module/category/category.route";
 import { newsRoutes } from "../module/news/news.route";
 import { mediaRoutes } from "../module/media/media.route";
 import { analyticsRoutes } from "../module/analytics/analytics.route";
+import { pageRoutes } from "../module/page/page.route";
+import { bookmarkRoutes } from "../module/bookmark/bookmark.route";
 
 const router = Router();
 
@@ -33,6 +35,14 @@ const moduleRoutes = [
   {
     path: "/analytics",
     route: analyticsRoutes,
+  },
+  {
+    path: "/pages",
+    route: pageRoutes,
+  },
+  {
+    path: "/bookmarks",
+    route: bookmarkRoutes,
   },
   {
     path: "/settings",
