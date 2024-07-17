@@ -9,7 +9,7 @@ const updateCategoryValidationSchema = z.object({
   body: z.object({
     name: z.string().optional(),
     description: z.string().optional(),
-    parent_category_id: z.number().optional(),
+    parent_category_id: z.string().optional(),
   }),
 });
 

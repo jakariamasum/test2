@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { categoryServices } from "./category.service";
+import AppError from "../../errors/AppError";
 
 const createCategory = catchAsync(async (req, res) => {
   const result = await categoryServices.createCategoryIntoDB(req.body);
@@ -15,6 +16,9 @@ const createCategory = catchAsync(async (req, res) => {
 });
 const getCategories = catchAsync(async (req, res) => {
   const result = await categoryServices.getCategoriesFromDB();
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
@@ -28,6 +32,9 @@ const updateCategory = catchAsync(async (req, res) => {
     category_id,
     req.body
   );
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
@@ -38,6 +45,9 @@ const updateCategory = catchAsync(async (req, res) => {
 const deleteCategory = catchAsync(async (req, res) => {
   const { category_id } = req.params;
   const result = await categoryServices.deleteCategoryFromDB(category_id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
