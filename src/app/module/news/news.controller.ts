@@ -26,6 +26,19 @@ const getNews = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getNewsByLanguage = catchAsync(async (req, res) => {
+  const { language_id } = req.params;
+  const result = await newsServices.getNewsByLanguageFromDB(language_id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "News retrived successfully!",
+    data: result,
+  });
+});
 const updateNews = catchAsync(async (req, res) => {
   const { news_id } = req.params;
   const result = await newsServices.updateNewsIntoDB(news_id, req.body);
@@ -56,6 +69,7 @@ const deleteNews = catchAsync(async (req, res) => {
 export const newsControllers = {
   createNews,
   getNews,
+  getNewsByLanguage,
   updateNews,
   deleteNews,
 };

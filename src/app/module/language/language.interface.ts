@@ -1,5 +1,6 @@
 export type TLanguage = {
-  language_name: string;
+  title: string;
   language_code: string;
   language_type: "0" | "1";
+  link: string;
 };

@@ -10,6 +10,7 @@ router.post(
   newsControllers.createNews
 );
 router.get("/", newsControllers.getNews);
+router.get("/:language_id", newsControllers.getNewsByLanguage);
 router.put(
   "/:news_id",
   validateRequest(newsValidations.updateNewsValidationSchema),

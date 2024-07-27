@@ -12,4 +12,5 @@ export type TNews = {
   views: number;
   likes: number;
   dislikes: number;
+  language_id?: Types.ObjectId;
 };

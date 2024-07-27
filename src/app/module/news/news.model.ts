@@ -13,6 +13,7 @@ const NewsSchema = new Schema<TNews>({
   views: { type: Number, default: 0, required: true },
   likes: { type: Number, default: 0, required: true },
   dislikes: { type: Number, default: 0, required: true },
+  language_id: { type: Schema.Types.ObjectId, ref: "Language" },
 });
 
 export const News = model<TNews>("News", NewsSchema);

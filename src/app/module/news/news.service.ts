@@ -14,6 +14,10 @@ const getSingleNewsFromDB = async (id: string) => {
   const result = await News.findOne({ _id: id });
   return result;
 };
+const getNewsByLanguageFromDB = async (id: string) => {
+  const result = await News.findOne({ language_id: id });
+  return result;
+};
 const updateNewsIntoDB = async (id: string, payload: Partial<TNews>) => {
   const result = await News.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
@@ -30,6 +34,7 @@ export const newsServices = {
   createNewsIntoDB,
   getNewsFromDB,
   getSingleNewsFromDB,
+  getNewsByLanguageFromDB,
   updateNewsIntoDB,
   deleteNewsFromDB,
 };

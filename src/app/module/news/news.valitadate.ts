@@ -30,6 +30,7 @@ const updateNewsValidationSchema = z.object({
     views: z.number().int().optional(),
     likes: z.number().int().optional(),
     dislikes: z.number().int().optional(),
+    language_id: z.string().optional(),
   }),
 });
 
