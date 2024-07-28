@@ -27,5 +27,19 @@ const getAllUser = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getSingleUser = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await userServices.getSingleUserFromDB(id);
+  console.log(result);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "users retrived successfully!",
+    data: result,
+  });
+});
 
-export const userControllers = { createUser, getAllUser };
+export const userControllers = { createUser, getAllUser, getSingleUser };

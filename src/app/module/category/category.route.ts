@@ -10,6 +10,7 @@ router.post(
   categoryControllers.createCategory
 );
 router.get("/", categoryControllers.getCategories);
+router.get("/:id", categoryControllers.getSingleCategory);
 router.put(
   "/:category_id",
   validateRequest(categoryValidations.updateCategoryValidationSchema),

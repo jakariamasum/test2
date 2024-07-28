@@ -15,7 +15,7 @@ const getSingleNewsFromDB = async (id: string) => {
   return result;
 };
 const getNewsByLanguageFromDB = async (id: string) => {
-  const result = await News.findOne({ language_id: id });
+  const result = await News.find({ language_id: id });
   return result;
 };
 const updateNewsIntoDB = async (id: string, payload: Partial<TNews>) => {

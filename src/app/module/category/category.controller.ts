@@ -26,6 +26,19 @@ const getCategories = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getSingleCategory = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await categoryServices.getSingleCategoryFromDB(id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Category retrived successfully!",
+    data: result,
+  });
+});
 const updateCategory = catchAsync(async (req, res) => {
   const { category_id } = req.params;
   const result = await categoryServices.updateCategoryIntoDB(
@@ -59,6 +72,7 @@ const deleteCategory = catchAsync(async (req, res) => {
 export const categoryControllers = {
   createCategory,
   getCategories,
+  getSingleCategory,
   updateCategory,
   deleteCategory,
 };

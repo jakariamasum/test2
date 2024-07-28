@@ -10,6 +10,10 @@ const getCategoriesFromDB = async () => {
   const result = await Category.find();
   return result;
 };
+const getSingleCategoryFromDB = async (id: string) => {
+  const result = await Category.findOne({ _id: id });
+  return result;
+};
 const updateCategoryIntoDB = async (
   id: string,
   payload: Partial<TCategory>
@@ -28,6 +32,7 @@ const deleteCategoryFromDB = async (id: string) => {
 export const categoryServices = {
   createCategoryIntoDB,
   getCategoriesFromDB,
+  getSingleCategoryFromDB,
   updateCategoryIntoDB,
   deleteCategoryFromDB,
 };
