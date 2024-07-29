@@ -7,7 +7,6 @@ const createNewsValidationSchema = z.object({
     author_id: z.string(),
     category_id: z.string(),
     page_tag: z.string().min(1),
-    publish_date: z.date().default(() => new Date()),
     status: z.string().default("draft"),
     views: z.number().int().default(0),
     likes: z.number().int().default(0),
