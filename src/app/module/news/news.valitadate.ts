@@ -22,10 +22,6 @@ const updateNewsValidationSchema = z.object({
     author_id: z.string().optional(),
     category_id: z.string().optional(),
     page_tag: z.string().min(1).optional(),
-    publish_date: z
-      .date()
-      .default(() => new Date())
-      .optional(),
     status: z.string().optional(),
     views: z.number().int().optional(),
     likes: z.number().int().optional(),
