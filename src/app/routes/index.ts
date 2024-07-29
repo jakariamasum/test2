@@ -8,6 +8,7 @@ import { mediaRoutes } from "../module/media/media.route";
 import { analyticsRoutes } from "../module/analytics/analytics.route";
 import { pageRoutes } from "../module/page/page.route";
 import { bookmarkRoutes } from "../module/bookmark/bookmark.route";
+import { subCategoryRoutes } from "../module/subcategory/subcategory.route";
 
 const router = Router();
 
@@ -27,6 +28,10 @@ const moduleRoutes = [
   {
     path: "/categories",
     route: categoryRoutes,
+  },
+  {
+    path: "/sub-categories",
+    route: subCategoryRoutes,
   },
   {
     path: "/media",
