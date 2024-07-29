@@ -1,0 +1,3 @@
+type TCity = {
+  title: string;
+};
