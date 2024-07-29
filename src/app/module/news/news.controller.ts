@@ -52,6 +52,19 @@ const getNewsByCategory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getNewsByUser = catchAsync(async (req, res) => {
+  const { user_id } = req.params;
+  const result = await newsServices.getNewsByUserFromDB(user_id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "News retrived successfully!",
+    data: result,
+  });
+});
 const updateNews = catchAsync(async (req, res) => {
   const { news_id } = req.params;
   const result = await newsServices.updateNewsIntoDB(news_id, req.body);
@@ -84,6 +97,7 @@ export const newsControllers = {
   getNews,
   getNewsByLanguage,
   getNewsByCategory,
+  getNewsByUser,
   updateNews,
   deleteNews,
 };
