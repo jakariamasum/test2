@@ -5,20 +5,11 @@ import { TUser } from "./user.interface";
 
 const UserSchema: Schema = new Schema<TUser>(
   {
-    username: {
+    title: {
       type: String,
       required: true,
     },
-    name: {
-      firstName: {
-        type: String,
-        required: true,
-      },
-      lastName: {
-        type: String,
-        required: true,
-      },
-    },
+
     password: {
       type: String,
       required: true,
@@ -30,17 +21,11 @@ const UserSchema: Schema = new Schema<TUser>(
     },
     role: {
       type: String,
-      enum: ["reader", "journalist", "editor", "admin"],
+      enum: ["reporter", "admin"],
       required: true,
     },
-    profile_picture: String,
+    img: String,
     bio: String,
-    social_links: {
-      twitter: String,
-      facebook: String,
-      linkedin: String,
-      website: String,
-    },
   },
   {
     timestamps: true,
