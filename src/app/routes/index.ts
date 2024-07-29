@@ -10,6 +10,7 @@ import { pageRoutes } from "../module/page/page.route";
 import { bookmarkRoutes } from "../module/bookmark/bookmark.route";
 import { subCategoryRoutes } from "../module/subcategory/subcategory.route";
 import { cityRoutes } from "../module/city/city.route";
+import { areaRoutes } from "../module/area/area.route";
 
 const router = Router();
 
@@ -57,6 +58,10 @@ const moduleRoutes = [
   {
     path: "/city",
     route: cityRoutes,
+  },
+  {
+    path: "/area",
+    route: areaRoutes,
   },
 ];
 
