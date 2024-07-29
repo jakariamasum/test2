@@ -11,6 +11,7 @@ router.post(
 );
 router.get("/", newsControllers.getNews);
 router.get("/:language_id", newsControllers.getNewsByLanguage);
+router.get("/category-news/:category_id", newsControllers.getNewsByCategory);
 router.put(
   "/:news_id",
   validateRequest(newsValidations.updateNewsValidationSchema),

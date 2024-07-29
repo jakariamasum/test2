@@ -18,6 +18,10 @@ const getNewsByLanguageFromDB = async (id: string) => {
   const result = await News.find({ language_id: id });
   return result;
 };
+const getNewsByCategoryFromDB = async (id: string) => {
+  const result = await News.find({ category_id: id });
+  return result;
+};
 const updateNewsIntoDB = async (id: string, payload: Partial<TNews>) => {
   const result = await News.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
@@ -35,6 +39,7 @@ export const newsServices = {
   getNewsFromDB,
   getSingleNewsFromDB,
   getNewsByLanguageFromDB,
+  getNewsByCategoryFromDB,
   updateNewsIntoDB,
   deleteNewsFromDB,
 };
