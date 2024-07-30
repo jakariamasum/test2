@@ -1,3 +1,4 @@
+import { isValidObjectId } from "mongoose";
 import { TUser } from "./user.interface";
 import { User } from "./user.model";
 
@@ -10,8 +11,8 @@ const getAllUserFromDB = async () => {
   const result = await User.find();
   return result;
 };
-const getSingleUserFromDB = async (id: string) => {
-  const result = await User.findOne({ _id: id });
+const getSingleUserFromDB = async (email: string) => {
+  const result = await User.findOne({ email: email });
   return result;
 };
 
@@ -27,10 +28,17 @@ const deleteUserFromDB = async (id: string) => {
   return result;
 };
 
+const loginUserFromDB = async (email: string, password: string) => {
+  console.log(email, password);
+  const user = await User.login(email, password);
+  return user;
+};
+
 export const userServices = {
   createUserIntoDB,
   getSingleUserFromDB,
   getAllUserFromDB,
   updateUserIntoDB,
   deleteUserFromDB,
+  loginUserFromDB,
 };
