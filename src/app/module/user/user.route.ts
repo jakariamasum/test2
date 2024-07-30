@@ -18,4 +18,6 @@ router.get("/:id", userControllers.getSingleUser);
 router.put("/:user_id", userControllers.updateUser);
 router.delete("/:user_id", userControllers.deleteUser);
 
+//admin routes
+
 export const userRoutes = router;

@@ -1,16 +1,19 @@
 import { NextFunction, Request, Response } from "express";
 
-require("dotenv").config();
-
 const verifyAdmin = (req: Request, res: Response, next: NextFunction) => {
-  const { decoded } = req;
-  if (!decoded || decoded.role === "reporter") {
-    return res.status(401).json({
+  if (
+    req.decoded &&
+    typeof req.decoded !== "string" &&
+    req.decoded.role === "admin"
+  ) {
+    next();
+  } else {
+    return res.status(403).json({
       success: false,
-      message: "Unauthorized access - Invalid Admin",
+      message: "Forbidden - Admin access required",
+      error: "",
     });
   }
-  next();
 };
 
-module.exports = verifyAdmin;
+export default verifyAdmin;
