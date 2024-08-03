@@ -14,6 +14,7 @@ const SectionSchema = new Schema({
   sectionTitle: { type: String },
   sectionName: { type: String },
   desktopGrids: { type: String },
+  gridWidth: { type: String },
   mobileGrids: { type: String },
   limit: { type: Number },
   width: { type: Number },

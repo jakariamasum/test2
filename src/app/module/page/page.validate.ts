@@ -13,6 +13,7 @@ const SectionSchema = z.object({
   sectionTitle: z.string().optional(),
   sectionName: z.string().optional(),
   desktopGrids: z.string().optional(),
+  gridWidth: z.string().optional(),
   mobileGrids: z.string().optional(),
   limit: z.number().optional(),
   width: z.number().optional(),

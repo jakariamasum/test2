@@ -11,6 +11,7 @@ export interface Section {
   sectionTitle?: string;
   sectionName?: string;
   desktopGrids?: string;
+  gridWidth?: string;
   mobileGrids?: string;
   limit?: number;
   width?: number;
