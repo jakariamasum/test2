@@ -10,6 +10,7 @@ router.post(
   PageControllers.createPage
 );
 router.get("/", PageControllers.getPages);
+router.get("/:path", PageControllers.getPageByPath);
 router.put(
   "/:page_id",
   validateRequest(pageValidations.updatePageValidationSchema),

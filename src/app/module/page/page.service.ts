@@ -8,8 +8,15 @@ const createPageIntoDB = async (payload: TPage) => {
 
 const getPageFromDB = async () => {
   const result = await Page.find();
+  console.log(result);
   return result;
 };
+
+const getPageByPathFromDB = async (path?: string) => {
+  const result = await Page.findOne({ path: path });
+  return result;
+};
+
 const updatePageIntoDB = async (id: string, payload: Partial<TPage>) => {
   const result = await Page.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
@@ -25,6 +32,7 @@ const deletePageFromDB = async (id: string) => {
 export const pageServices = {
   createPageIntoDB,
   getPageFromDB,
+  getPageByPathFromDB,
   updatePageIntoDB,
   deletePageFromDB,
 };

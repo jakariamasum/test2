@@ -14,6 +14,7 @@ const createPage = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
 const getPages = catchAsync(async (req, res) => {
   const result = await pageServices.getPageFromDB();
   if (!result) {
@@ -26,6 +27,21 @@ const getPages = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+const getPageByPath = catchAsync(async (req, res) => {
+  const { path } = req.params;
+  const result = await pageServices.getPageByPathFromDB(path);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Pages retrived successfully!",
+    data: result,
+  });
+});
+
 const updatePage = catchAsync(async (req, res) => {
   const { page_id } = req.params;
   const result = await pageServices.updatePageIntoDB(page_id, req.body);
@@ -56,6 +72,7 @@ const deletePage = catchAsync(async (req, res) => {
 export const PageControllers = {
   createPage,
   getPages,
+  getPageByPath,
   updatePage,
   deletePage,
 };
