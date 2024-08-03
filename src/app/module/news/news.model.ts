@@ -9,7 +9,7 @@ interface INews extends Document {
   author_id: Schema.Types.ObjectId;
   location: ILocation;
   category: ICategory;
-  language_id?: string;
+  lang?: string;
 }
 
 const LocationSchema = new Schema<ILocation>({
@@ -31,7 +31,7 @@ const NewsSchema = new Schema<INews>(
     author_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
     location: { type: LocationSchema, required: true },
     category: { type: CategorySchema, required: true },
-    language_id: { type: String },
+    lang: { type: String, required: true},
   },
   { timestamps: true }
 );

@@ -14,8 +14,9 @@ const getSingleNewsFromDB = async (id: string) => {
   const result = await News.findOne({ _id: id });
   return result;
 };
-const getNewsByLanguageFromDB = async (id: string) => {
-  const result = await News.find({ language_id: id });
+const getNewsByLanguageFromDB = async (lang: string) => {
+  const result = await News.find({ lang: lang });
+  console.log(result);
   return result;
 };
 const getNewsByCategoryFromDB = async (id: string) => {

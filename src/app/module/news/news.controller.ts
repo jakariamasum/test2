@@ -27,8 +27,8 @@ const getNews = catchAsync(async (req, res) => {
   });
 });
 const getNewsByLanguage = catchAsync(async (req, res) => {
-  const { language_id } = req.params;
-  const result = await newsServices.getNewsByLanguageFromDB(language_id);
+  const { lang } = req.params;
+  const result = await newsServices.getNewsByLanguageFromDB(lang);
   if (!result) {
     throw new AppError(404, "No data found");
   }

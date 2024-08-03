@@ -16,5 +16,5 @@ export interface TNews {
   author_id: string;
   location: ILocation;
   category: ICategory;
-  language_id?: string;
+  lang?: string;
 }
