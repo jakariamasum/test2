@@ -18,7 +18,7 @@ const LocationSchema = new Schema<ILocation>({
 });
 
 const CategorySchema = new Schema<ICategory>({
-  category: { type: String, required: true },
+  category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
   subCategory: { type: String },
 });
 
@@ -31,7 +31,7 @@ const NewsSchema = new Schema<INews>(
     author_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
     location: { type: LocationSchema, required: true },
     category: { type: CategorySchema, required: true },
-    lang: { type: String, required: true},
+    lang: { type: String },
   },
   { timestamps: true }
 );

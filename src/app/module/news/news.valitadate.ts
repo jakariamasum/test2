@@ -39,7 +39,7 @@ const updateNewsValidationSchema = z.object({
     author_id: z.string().optional(),
     location: updateLocationSchema,
     category: updateCategorySchema,
-    language_id: z.string().optional(),
+    lang: z.string().optional(),
   }),
 });
 

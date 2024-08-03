@@ -1,10 +1,12 @@
+import { Types } from "mongoose";
+
 export interface ILocation {
   city: string;
   area?: string;
 }
 
 export interface ICategory {
-  category: string;
+  category: Types.ObjectId;
   subCategory?: string;
 }
 
@@ -13,7 +15,7 @@ export interface TNews {
   content: string;
   tags: string[];
   img: string;
-  author_id: string;
+  author_id: Types.ObjectId;
   location: ILocation;
   category: ICategory;
   lang?: string;

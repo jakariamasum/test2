@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { TNews } from "./news.interface";
 import News from "./news.model";
 
@@ -19,8 +20,20 @@ const getNewsByLanguageFromDB = async (lang: string) => {
   console.log(result);
   return result;
 };
-const getNewsByCategoryFromDB = async (id: string) => {
-  const result = await News.find({ category_id: id });
+const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
+  const objectId = new mongoose.Types.ObjectId(id);
+  let result;
+  if (lang) {
+    result = await News.find({
+      "category.category": objectId,
+      lang: lang,
+    }).populate("category.category");
+  } else {
+    result = await News.find({ "category.category": objectId }).populate({
+      path: "category.category",
+    });
+  }
+  console.log(result);
   return result;
 };
 const getNewsByUserFromDB = async (id: string) => {
