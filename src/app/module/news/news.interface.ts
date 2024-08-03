@@ -1,16 +1,20 @@
-import { Types } from "mongoose";
+export interface ILocation {
+  city: string;
+  area?: string;
+}
 
-export type TNews = {
+export interface ICategory {
+  category: string;
+  subCategory?: string;
+}
+
+export interface TNews {
   title: string;
   content: string;
-  summary?: string;
-  author_id: Types.ObjectId;
-  category_id: Types.ObjectId;
-  page_tag: string;
-  publish_date?: Date;
-  status: string;
-  views: number;
-  likes: number;
-  dislikes: number;
-  language_id?: Types.ObjectId;
-};
+  tags: string[];
+  img: string;
+  author_id: string;
+  location: ILocation;
+  category: ICategory;
+  language_id?: string;
+}

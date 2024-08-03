@@ -1,19 +1,41 @@
-import { model, Schema } from "mongoose";
-import { TNews } from "./news.interface";
+import { Schema, model, Document } from "mongoose";
+import { ICategory, ILocation } from "./news.interface";
 
-const NewsSchema = new Schema<TNews>({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  summary: { type: String },
-  author_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  category_id: { type: Schema.Types.ObjectId, ref: "Category", required: true },
-  page_tag: { type: String, required: true },
-  publish_date: { type: Date, default: Date.now },
-  status: { type: String, default: "draft", required: true },
-  views: { type: Number, default: 0, required: true },
-  likes: { type: Number, default: 0, required: true },
-  dislikes: { type: Number, default: 0, required: true },
-  language_id: { type: Schema.Types.ObjectId, ref: "Language" },
+interface INews extends Document {
+  title: string;
+  content: string;
+  tags: string[];
+  img: string;
+  author_id: Schema.Types.ObjectId;
+  location: ILocation;
+  category: ICategory;
+  language_id?: string;
+}
+
+const LocationSchema = new Schema<ILocation>({
+  city: { type: String, required: true },
+  area: { type: String },
 });
 
-export const News = model<TNews>("News", NewsSchema);
+const CategorySchema = new Schema<ICategory>({
+  category: { type: String, required: true },
+  subCategory: { type: String },
+});
+
+const NewsSchema = new Schema<INews>(
+  {
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    tags: { type: [String], required: true },
+    img: { type: String, required: true },
+    author_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    location: { type: LocationSchema, required: true },
+    category: { type: CategorySchema, required: true },
+    language_id: { type: String },
+  },
+  { timestamps: true }
+);
+
+const News = model<INews>("News", NewsSchema);
+
+export default News;

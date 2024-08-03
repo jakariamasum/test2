@@ -1,5 +1,5 @@
 import { TNews } from "./news.interface";
-import { News } from "./news.model";
+import News from "./news.model";
 
 const createNewsIntoDB = async (payload: TNews) => {
   const result = await News.create(payload);
