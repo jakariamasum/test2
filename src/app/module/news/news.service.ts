@@ -12,12 +12,13 @@ const getNewsFromDB = async () => {
   return result;
 };
 const getSingleNewsFromDB = async (id: string) => {
-  const result = await News.findOne({ _id: id });
+  const result = await News.findOne({ _id: id }).populate("category.category");
   return result;
 };
-const getNewsByLanguageFromDB = async (lang: string) => {
-  const result = await News.find({ lang: lang });
-  console.log(result);
+const getNewsByLanguageFromDB = async (link: string) => {
+  const result = await News.find({ lang: link })
+    .populate("category.category")
+    .populate("author_id");
   return result;
 };
 const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
@@ -41,7 +42,9 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
   return result;
 };
 const getNewsByUserFromDB = async (id: string) => {
-  const result = await News.find({ author_id: id });
+  const result = await News.find({ author_id: id }).populate(
+    "category.category"
+  );
   return result;
 };
 const updateNewsIntoDB = async (id: string, payload: Partial<TNews>) => {

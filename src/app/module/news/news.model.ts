@@ -1,16 +1,5 @@
 import { Schema, model, Document } from "mongoose";
-import { ICategory, ILocation } from "./news.interface";
-
-interface INews extends Document {
-  title: string;
-  content: string;
-  tags: string[];
-  img: string;
-  author_id: Schema.Types.ObjectId;
-  location: ILocation;
-  category: ICategory;
-  lang?: string;
-}
+import { ICategory, ILocation, TNews } from "./news.interface";
 
 const LocationSchema = new Schema<ILocation>({
   city: { type: String, required: true },
@@ -22,7 +11,7 @@ const CategorySchema = new Schema<ICategory>({
   subCategory: { type: String },
 });
 
-const NewsSchema = new Schema<INews>(
+const NewsSchema = new Schema<TNews>(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
@@ -36,6 +25,6 @@ const NewsSchema = new Schema<INews>(
   { timestamps: true }
 );
 
-const News = model<INews>("News", NewsSchema);
+const News = model<TNews>("News", NewsSchema);
 
 export default News;
