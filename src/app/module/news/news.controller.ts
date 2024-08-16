@@ -3,6 +3,7 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { newsServices } from "./news.service";
 import AppError from "../../errors/AppError";
+import { categoryServices } from "../category/category.service";
 
 const createNews = catchAsync(async (req, res) => {
   const result = await newsServices.createNewsIntoDB(req.body);
@@ -57,6 +58,50 @@ const getNewsByCategory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+const getNewsByCategoryIds = catchAsync(async (req, res) => {
+  const { categories } = req.body;
+  const { lang } = req.query;
+
+  console.log("hit", lang, req.body.categories);
+
+  if (!categories || !Array.isArray(categories) || categories.length === 0) {
+    throw new AppError(400, "Invalid category IDs provided");
+  }
+
+  const result = [];
+
+  for (const category of categories) {
+    console.log("category", category);
+
+    // Extract the category ID
+    const categoryId = category.catId;
+
+    const categoryData = await categoryServices.getSingleCategoryFromDB(categoryId);
+    
+    console.log("categoryData", categoryData);
+
+    if (categoryData) {
+      const posts = await newsServices.getNewsByCategoryFromDB(
+        categoryId
+      );
+      result.push({ category: categoryData, posts });
+    }
+  }
+
+  if (result.length === 0) {
+    throw new AppError(404, "No data found");
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "News retrieved successfully!",
+    data: result,
+  });
+});
+
+
 const getNewsByUser = catchAsync(async (req, res) => {
   const { user_id } = req.params;
   const result = await newsServices.getNewsByUserFromDB(user_id);
@@ -105,4 +150,5 @@ export const newsControllers = {
   getNewsByUser,
   updateNews,
   deleteNews,
+  getNewsByCategoryIds,
 };

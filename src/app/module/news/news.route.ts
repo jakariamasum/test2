@@ -11,6 +11,7 @@ router.post(
 );
 router.get("/", newsControllers.getNews);
 router.get("/:lang", newsControllers.getNewsByLanguage);
+router.post("/category-news", newsControllers.getNewsByCategoryIds);
 router.get("/category-news/:category_id", newsControllers.getNewsByCategory);
 router.get("/user-news/:user_id", newsControllers.getNewsByUser);
 router.put(
