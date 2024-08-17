@@ -13,7 +13,7 @@ const getPageFromDB = async () => {
 };
 
 const getPageByPathFromDB = async (path?: string) => {
-  const result = await Page.findOne({ path: path });
+  const result = await Page.findOne({ path: path }).select("rows");
   return result;
 };
 

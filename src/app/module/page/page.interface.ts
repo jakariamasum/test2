@@ -31,4 +31,5 @@ export type TPage = {
   description?: string;
   img?: ImageBitmap;
   rowData?: RowData;
+  path?: string;
 };

@@ -30,7 +30,8 @@ const getPages = catchAsync(async (req, res) => {
 
 const getPageByPath = catchAsync(async (req, res) => {
   const { path } = req.params;
-  const result = await pageServices.getPageByPathFromDB(path);
+  const pathName = "/" + path;
+  const result = await pageServices.getPageByPathFromDB(pathName);
   if (!result) {
     throw new AppError(404, "No data found");
   }

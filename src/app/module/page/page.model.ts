@@ -21,6 +21,7 @@ const SectionSchema = new Schema({
   height: { type: Number },
   photoPosition: { type: String },
   photoUrl: { type: String },
+  path: { type: String },
 });
 
 const RowDataSchema = new Schema({
