@@ -10,9 +10,6 @@ interface TUserModel extends Model<TUser> {
 
 const UserSchema: Schema = new Schema<TUser>(
   {
-    _id: {
-      type: String,
-    },
     title: {
       type: String,
       required: true,

@@ -9,7 +9,7 @@ import config from "../../../config";
 const createUser = catchAsync(async (req, res) => {
   console.log(req.body);
   const result = await userServices.createUserIntoDB(req.body);
-  console.log(result);
+  console.log("user created", result);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,

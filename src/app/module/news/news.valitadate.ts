@@ -6,7 +6,7 @@ const LocationSchema = z.object({
 });
 
 const CategorySchema = z.object({
-  category: z.string().min(1, "Category is required"),
+  category: z.string().optional(),
   subCategory: z.string().optional(),
 });
 const updateLocationSchema = z.object({
@@ -25,7 +25,7 @@ const createNewsValidationSchema = z.object({
     content: z.string().min(1, "Content is required"),
     tags: z.array(z.string()).min(1, "At least one tag is required"),
     img: z.string().min(1, "Image URL is required"),
-    author_id: z.string().min(1, "Author ID is required"),
+    author: z.string().min(1, "Author ID is required"),
     location: LocationSchema,
     category: CategorySchema,
   }),
@@ -36,7 +36,7 @@ const updateNewsValidationSchema = z.object({
     content: z.string().optional(),
     tags: z.array(z.string()).optional(),
     img: z.string().optional(),
-    author_id: z.string().optional(),
+    author: z.string().optional(),
     location: updateLocationSchema,
     category: updateCategorySchema,
     lang: z.string().optional(),

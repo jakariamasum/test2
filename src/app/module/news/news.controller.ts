@@ -7,7 +7,6 @@ import { categoryServices } from "../category/category.service";
 
 const createNews = catchAsync(async (req, res) => {
   const result = await newsServices.createNewsIntoDB(req.body);
-  console.log(result);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
@@ -43,7 +42,6 @@ const getNewsByLanguage = catchAsync(async (req, res) => {
 const getNewsByCategory = catchAsync(async (req, res) => {
   const { category_id } = req.params;
   const { lang } = req.query;
-  console.log(lang);
   const result = await newsServices.getNewsByCategoryFromDB(
     category_id,
     lang as string
@@ -62,9 +60,6 @@ const getNewsByCategory = catchAsync(async (req, res) => {
 const getNewsByCategoryIds = catchAsync(async (req, res) => {
   const { categories } = req.body;
   const { lang } = req.query;
-
-  console.log("hit", lang, req.body.categories);
-
   if (!categories || !Array.isArray(categories) || categories.length === 0) {
     throw new AppError(400, "Invalid category IDs provided");
   }
@@ -72,19 +67,13 @@ const getNewsByCategoryIds = catchAsync(async (req, res) => {
   const result = [];
 
   for (const category of categories) {
-    console.log("category", category);
-
     // Extract the category ID
     const categoryId = category.catId;
 
-    const categoryData = await categoryServices.getSingleCategoryFromDB(categoryId);
-    
-    console.log("categoryData", categoryData);
-
+    const categoryData =
+      await categoryServices.getSingleCategoryFromDB(categoryId);
     if (categoryData) {
-      const posts = await newsServices.getNewsByCategoryFromDB(
-        categoryId
-      );
+      const posts = await newsServices.getNewsByCategoryFromDB(categoryId);
       result.push({ category: categoryData, posts });
     }
   }
@@ -101,7 +90,6 @@ const getNewsByCategoryIds = catchAsync(async (req, res) => {
   });
 });
 
-
 const getNewsByUser = catchAsync(async (req, res) => {
   const { user_id } = req.params;
   const result = await newsServices.getNewsByUserFromDB(user_id);
@@ -117,6 +105,7 @@ const getNewsByUser = catchAsync(async (req, res) => {
 });
 const updateNews = catchAsync(async (req, res) => {
   const { news_id } = req.params;
+  console.log("hit id", news_id);
   const result = await newsServices.updateNewsIntoDB(news_id, req.body);
   if (!result) {
     throw new AppError(404, "No data found");

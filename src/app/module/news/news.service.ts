@@ -8,17 +8,21 @@ const createNewsIntoDB = async (payload: TNews) => {
 };
 
 const getNewsFromDB = async () => {
-  const result = await News.find().populate("category.category");
+  const result = await News.find()
+    .populate("category.category")
+    .populate("author");
   return result;
 };
 const getSingleNewsFromDB = async (id: string) => {
-  const result = await News.findOne({ _id: id }).populate("category.category");
+  const result = await News.findOne({ _id: id })
+    .populate("category.category")
+    .populate("author");
   return result;
 };
 const getNewsByLanguageFromDB = async (link: string) => {
   const result = await News.find({ lang: link })
     .populate("category.category")
-    .populate("author_id");
+    .populate("author");
   return result;
 };
 const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
@@ -34,17 +38,15 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
       .populate({
         path: "category.category",
       })
-      .populate({
-        path: "author_id",
-      });
+      .populate("author");
   }
   console.log(result);
   return result;
 };
 const getNewsByUserFromDB = async (id: string) => {
-  const result = await News.find({ author_id: id }).populate(
-    "category.category"
-  );
+  const result = await News.find({ author: id })
+    .populate("category.category")
+    .populate("author");
   return result;
 };
 const updateNewsIntoDB = async (id: string, payload: Partial<TNews>) => {
