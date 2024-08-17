@@ -15,7 +15,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors());
 
 // application routes
 app.use("/api/v1", router);

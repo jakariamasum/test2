@@ -1,8 +1,29 @@
-export type TSettings = {
-  site_name: string;
-  site_description?: string;
-  contact_email: string;
-  twitter?: string;
-  facebook?: string;
-  linkedin?: string;
+export type TSetting = {
+  metaDescription: string;
+  description: string;
+  privacy: string;
+  terms: string;
+  orderPolicy: string;
+  logo: string;
+  favicon: string;
+  lotoImg: string;
+  metaImg: string;
+  title: string;
+  bgColor: string;
+  country: string;
+  currencySymbol: string;
+  copyright: string;
+  deliveryMethod1: string;
+  deliveryMethod2: string;
+  pickupMethod1: string;
+  pickupMethod2: string;
+  paymentMethod: string;
+  paymentText1: string;
+  paymentText2: string;
+  officeAddress: string;
+  whatsApp: number;
+  telegram: string;
+  kindlyNote: string;
+  order: string;
+  orderText: string;
 };

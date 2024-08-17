@@ -4,11 +4,7 @@ import validateRequest from "../../middlewares/validateRequest";
 import { settingValidations } from "./settings.validate";
 
 const router = express.Router();
-router.post(
-  "/",
-  validateRequest(settingValidations.createSettingValidationSchema),
-  settingControllers.createSettings
-);
+router.post("/", settingControllers.createSettings);
 router.get("/", settingControllers.getSettings);
 router.put(
   "/:setting_id",

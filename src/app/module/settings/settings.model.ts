@@ -1,25 +1,34 @@
-import { model, Schema } from "mongoose";
-import { TSettings } from "./settings.interface";
+import { Schema, model } from "mongoose";
+import { TSetting } from "./settings.interface";
 
-const settigSchema = new Schema<TSettings>(
-  {
-    site_name: {
-      type: String,
-      required: true,
-    },
-    site_description: String,
-    contact_email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    twitter: String,
-    facebook: String,
-    linkedin: String,
-  },
-  {
-    timestamps: true,
-  }
-);
+const settingSchema = new Schema<TSetting>({
+  metaDescription: { type: String },
+  description: { type: String },
+  privacy: { type: String },
+  terms: { type: String },
+  orderPolicy: { type: String },
+  logo: { type: String },
+  favicon: { type: String },
+  lotoImg: { type: String },
+  metaImg: { type: String },
+  title: { type: String },
+  bgColor: { type: String },
+  country: { type: String },
+  currencySymbol: { type: String },
+  copyright: { type: String },
+  deliveryMethod1: { type: String },
+  deliveryMethod2: { type: String },
+  pickupMethod1: { type: String },
+  pickupMethod2: { type: String },
+  paymentMethod: { type: String },
+  paymentText1: { type: String },
+  paymentText2: { type: String },
+  officeAddress: { type: String },
+  whatsApp: { type: Number },
+  telegram: { type: String },
+  kindlyNote: { type: String },
+  order: { type: String },
+  orderText: { type: String },
+});
 
-export const Settings = model<TSettings>("Setting", settigSchema);
+export const Setting = model<TSetting>("Setting", settingSchema);

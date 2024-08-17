@@ -1,27 +1,24 @@
-import { TSettings } from "./settings.interface";
-import { Settings } from "./settings.model";
+import { TSetting } from "./settings.interface";
+import { Setting } from "./settings.model";
 
-const createSettingIntoDB = async (payload: TSettings) => {
-  const result = await Settings.create(payload);
+const createSettingIntoDB = async (payload: TSetting) => {
+  const result = await Setting.create(payload);
   return result;
 };
 
 const getSettingsFromDB = async () => {
-  const result = await Settings.find();
+  const result = await Setting.find();
   return result;
 };
-const updateSettingsIntoDB = async (
-  id: string,
-  payload: Partial<TSettings>
-) => {
-  const result = await Settings.findByIdAndUpdate({ _id: id }, payload, {
+const updateSettingsIntoDB = async (id: string, payload: Partial<TSetting>) => {
+  const result = await Setting.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
   });
   return result;
 };
 
 const deleteSettingsFromDB = async (id: string) => {
-  const result = await Settings.findByIdAndDelete({ _id: id });
+  const result = await Setting.findByIdAndDelete({ _id: id });
   return result;
 };
 
