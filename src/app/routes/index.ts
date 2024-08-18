@@ -13,6 +13,7 @@ import { cityRoutes } from "../module/city/city.route";
 import { areaRoutes } from "../module/area/area.route";
 import { adsRoutes } from "../module/ads/ads.route";
 import { videoRoutes } from "../module/video/video.route";
+import { storiesRoutes } from "../module/stories/stories.route";
 
 const router = Router();
 
@@ -72,6 +73,10 @@ const moduleRoutes = [
   {
     path: "/videos",
     route: videoRoutes,
+  },
+  {
+    path: "/story",
+    route: storiesRoutes,
   },
 ];
 

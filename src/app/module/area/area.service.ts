@@ -5,7 +5,7 @@ const createAreaIntoDB = async (payload: TCity) => {
   return result;
 };
 const getAllAreaFromDB = async () => {
-  const result = await Area.find();
+  const result = await Area.find().populate("city");
   return result;
 };
 
