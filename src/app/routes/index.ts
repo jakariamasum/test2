@@ -12,6 +12,7 @@ import { subCategoryRoutes } from "../module/subcategory/subcategory.route";
 import { cityRoutes } from "../module/city/city.route";
 import { areaRoutes } from "../module/area/area.route";
 import { adsRoutes } from "../module/ads/ads.route";
+import { videoRoutes } from "../module/video/video.route";
 
 const router = Router();
 
@@ -67,6 +68,10 @@ const moduleRoutes = [
   {
     path: "/ads",
     route: adsRoutes,
+  },
+  {
+    path: "/videos",
+    route: videoRoutes,
   },
 ];
 
