@@ -1,6 +1,8 @@
+import { Types } from "mongoose";
+
 export type TCategory = {
-  category: string;
-  subCategory?: string;
+  category: Types.ObjectId;
+  subCategory?: Types.ObjectId | string;
 };
 
 export type TVideo = {

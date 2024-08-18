@@ -2,8 +2,8 @@ import { Schema, model } from "mongoose";
 import { TCategory, TVideo } from "./video.interface";
 
 const CategorySchema = new Schema<TCategory>({
-  category: { type: String, required: true },
-  subCategory: { type: String },
+  category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
+  subCategory: { type: Schema.Types.Mixed, ref: "Subcategory" },
 });
 
 const VideoSchema = new Schema<TVideo>({
