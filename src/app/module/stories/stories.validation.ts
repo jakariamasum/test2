@@ -1,6 +1,6 @@
 import { z } from "zod";
 export const bannerSchema = z.object({
-  img: z.string().url(),
+  img: z.string(),
   title: z.string().min(1),
 });
 const createStoriesValidationSchema = z.object({

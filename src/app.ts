@@ -12,10 +12,11 @@ import globalErrorHandler from "./app/middlewares/globalErrorhandler";
 const app: Application = express();
 
 //parsers
-app.use(express.json());
-app.use(cookieParser());
-
 app.use(cors({ origin: "*", credentials: true }));
+
+// Increase the request size limit
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // application routes
 app.use("/api/v1", router);

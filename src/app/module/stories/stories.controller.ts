@@ -5,6 +5,7 @@ import AppError from "../../errors/AppError";
 import { storiesServices } from "./stories.service";
 
 const createStory = catchAsync(async (req, res) => {
+  console.log(req.body);
   const result = await storiesServices.createStoryIntoDB(req.body);
   console.log(result);
   sendResponse(res, {
