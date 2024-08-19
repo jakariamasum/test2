@@ -10,5 +10,9 @@ router.post(
   adsControllers.createAds
 );
 router.get("/", adsControllers.getAds);
-
+router.put(
+  "/:id",
+  validateRequest(adsValidations.updateAdSectionSchema),
+  adsControllers.updateAds
+);
 export const adsRoutes = router;

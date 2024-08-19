@@ -27,7 +27,22 @@ const getAds = catchAsync(async (req, res) => {
   });
 });
 
+const updateAds = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await adsServices.updateAdsIntoDB(id, req.body);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Ads updated successfully!",
+    data: result,
+  });
+});
+
 export const adsControllers = {
   createAds,
   getAds,
+  updateAds,
 };
