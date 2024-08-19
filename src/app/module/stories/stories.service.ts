@@ -7,7 +7,15 @@ const createStoryIntoDB = async (payload: TStory) => {
 };
 
 const getStoriesFromDB = async () => {
-  const result = await Story.find();
+  const result = await Story.find()
+    .populate({
+      path: "category",
+      select: "title _id",
+    })
+    .populate({
+      path: "subCategory",
+      select: "title _id",
+    });
   return result;
 };
 export const storiesServices = {
