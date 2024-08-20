@@ -27,7 +27,6 @@ const verifyJWT = async (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decoded = verifyToken(token, config.jwt_secret as string);
-
     if (!decoded) {
       return res.status(401).json({
         success: false,

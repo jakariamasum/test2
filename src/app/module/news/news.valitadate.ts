@@ -37,8 +37,8 @@ const updateNewsValidationSchema = z.object({
     tags: z.array(z.string()).optional(),
     img: z.string().optional(),
     author: z.string().optional(),
-    location: updateLocationSchema,
-    category: updateCategorySchema,
+    location: updateLocationSchema.optional(),
+    category: updateCategorySchema.optional(),
     lang: z.string().optional(),
   }),
 });

@@ -5,6 +5,7 @@ import sendResponse from "../../utils/sendResponse";
 import { userServices } from "./user.service";
 import { createToken } from "../../utils/tokenGenerateFunction";
 import config from "../../../config";
+import { JwtPayload } from "jsonwebtoken";
 
 const createUser = catchAsync(async (req, res) => {
   console.log(req.body);
@@ -96,9 +97,11 @@ const loginUser = catchAsync(async (req, res) => {
 });
 
 const verifyUser = catchAsync(async (req, res) => {
-  const { decoded } = req;
-  console.log("decoded", decoded);
-  const user = await userServices.getSingleUserFromDB(decoded?.userId);
+  const decoded = req.decoded;
+  // console.log("decoded", decoded);
+  const user = await userServices.getSingleUserFromDB(
+    decoded?.userId as string
+  );
   if (!user) {
     return res.status(401).json({
       success: false,
