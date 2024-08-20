@@ -11,6 +11,9 @@ router.post(
   videoController.createVideo
 );
 
+router.get("/:id", videoController.getSingleVideo);
 router.get("/", videoController.getAllVideo);
+router.put("/:id", videoController.updateVideo);
+router.delete("/:id", videoController.deleteVideo);
 
 export const videoRoutes = router;

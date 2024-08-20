@@ -39,5 +39,27 @@ const getAllVideoFromDB = async () => {
 
   return videos;
 };
+const getSingleVideo = async (id: string) => {
+  const video = await Video.findOne({ _id: id });
+  return video;
+};
 
-export const videoServices = { createVideoIntoDB, getAllVideoFromDB };
+const updateVideoIntoDB = async (id: string, payload: Partial<TVideo>) => {
+  const result = await Video.findByIdAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
+const deleteVideoFromDB = async (id: string) => {
+  const result = await Video.findByIdAndDelete({ _id: id });
+  return result;
+};
+
+export const videoServices = {
+  createVideoIntoDB,
+  getAllVideoFromDB,
+  getSingleVideo,
+  updateVideoIntoDB,
+  deleteVideoFromDB,
+};
