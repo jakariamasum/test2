@@ -1,40 +1,27 @@
 import { z } from "zod";
 
-const SectionSchema = z.object({
-  section: z.string().optional(),
-  index: z.number().optional(),
+const SectionDataSchema = z.object({
+  sectionTitle: z.string(),
   backgroundColor: z.string().optional(),
-  color: z.string().optional(),
-  titleBackgroundColor: z.string().optional(),
-  titleTextColor: z.string().optional(),
-  sectionBackgroundColor: z.string().optional(),
-  sectionTextColor: z.string().optional(),
-  sectionStyle: z.string().optional(),
-  sectionTitle: z.string().optional(),
-  sectionName: z.string().optional(),
-  desktopGrids: z.string().optional(),
-  gridWidth: z.string().optional(),
-  mobileGrids: z.string().optional(),
-  limit: z.number().optional(),
-  width: z.number().optional(),
-  height: z.number().optional(),
-  photoPosition: z.string().optional(),
-  photoUrl: z.string().optional(),
+  desktopGrid: z.string().optional(),
 });
 
-export const RowDataSchema = z.object({
-  id: z.number(),
-  backgroundColor: z.string(),
-  color: z.string(),
-  sections: z.array(SectionSchema),
+// Zod schema for RowData
+const RowDataSchema = z.object({
+  color: z.string().optional(),
+  backgroundColor: z.string().optional(),
+  index: z.number().optional(),
+  sections: z.array(SectionDataSchema).optional(),
 });
 
 const createPageValidationSchema = z.object({
   body: z.object({
-    title: z.string(),
+    title: z.string().optional(),
     description: z.string().optional(),
     img: z.string().optional(),
-    rowData: RowDataSchema.optional(),
+    rows: z.array(RowDataSchema).optional(),
+    language: z.string(),
+    path: z.string(),
   }),
 });
 

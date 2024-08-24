@@ -1,5 +1,5 @@
 import { TPage } from "./page.interface";
-import Page from "./page.model";
+import { Page } from "./page.model";
 
 const createPageIntoDB = async (payload: TPage) => {
   const result = await Page.create(payload);
