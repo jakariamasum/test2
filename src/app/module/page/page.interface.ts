@@ -6,12 +6,13 @@ export type TSectionData = {
   mobileGrid: string;
   sectionLimit: string;
   imgPosition?: string;
+  width?: string;
 };
 
 export type TRowData = {
-  color: string;
-  backgroundColor: string;
-  index: number;
+  textColor: string;
+  bgColor: string;
+  id: number;
   sections: TSectionData[];
 };
 

@@ -9,12 +9,13 @@ const SectionDataSchema = new Schema<TSectionData>({
   mobileGrid: { type: String },
   sectionLimit: { type: String },
   imgPosition: { type: String },
+  width: { type: String },
 });
 
 const RowDataSchema = new Schema<TRowData>({
-  color: { type: String },
-  backgroundColor: { type: String },
-  index: { type: Number },
+  textColor: { type: String },
+  bgColor: { type: String },
+  id: { type: Number },
   sections: { type: [SectionDataSchema] },
 });
 
