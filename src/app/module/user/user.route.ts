@@ -3,21 +3,37 @@ import { userControllers } from "./user.controller";
 import validateRequest from "../../middlewares/validateRequest";
 import { userValidationSchemas } from "./user.validation";
 import verifyJWT from "../../middlewares/verifyMiddlewar";
+import verifyAdmin from "../../middlewares/verifyAdmin";
 
 const router = express.Router();
 
+//admin routes
 router.post(
-  "/",
+  "/admin",
   validateRequest(userValidationSchemas.createUserValidationSchema),
+  verifyJWT,
+  verifyAdmin,
   userControllers.createUser
 );
-router.post("/login", userControllers.loginUser);
-router.post("/verify-user", verifyJWT, userControllers.verifyUser);
-router.get("/", userControllers.getAllUser);
-router.get("/:id", userControllers.getSingleUser);
-router.put("/:user_id", userControllers.updateUser);
-router.delete("/:user_id", userControllers.deleteUser);
+router.put(
+  "/admin/:user_id",
+  verifyJWT,
+  verifyAdmin,
+  userControllers.updateUser
+);
+router.delete(
+  "/admin/:user_id",
+  verifyJWT,
+  verifyAdmin,
+  userControllers.deleteUser
+);
+router.get("/admin", verifyJWT, verifyAdmin, userControllers.getAllUser);
 
-//admin routes
+//user routes
+router.post("/verify-user", verifyJWT, userControllers.verifyUser);
+
+//public routes
+router.post("/login", userControllers.loginUser);
+router.get("/:id", userControllers.getSingleUser);
 
 export const userRoutes = router;
