@@ -17,5 +17,5 @@ router.put(
   PageControllers.updatePage
 );
 router.delete("/:page_id", PageControllers.deletePage);
-
+router.get("/get-page/:language", PageControllers.getPageByLanguage);
 export const pageRoutes = router;

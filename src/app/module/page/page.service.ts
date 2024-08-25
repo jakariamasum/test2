@@ -16,7 +16,10 @@ const getPageByPathFromDB = async (path?: string) => {
   const result = await Page.findOne({ path: path }).select("rows");
   return result;
 };
-
+const getPageByLanguageFromDB = async (language: string) => {
+  const result = await Page.findOne({ language: language });
+  return result;
+};
 const updatePageIntoDB = async (id: string, payload: Partial<TPage>) => {
   const result = await Page.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
@@ -35,4 +38,5 @@ export const pageServices = {
   getPageByPathFromDB,
   updatePageIntoDB,
   deletePageFromDB,
+  getPageByLanguageFromDB,
 };
