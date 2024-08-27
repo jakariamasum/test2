@@ -1,5 +1,7 @@
+import { ObjectId } from "mongoose";
+
 export type TSectionData = {
-  sectionTitle: string;
+  sectionTitle: ObjectId;
   color: string;
   backgroundColor: string;
   desktopGrid: string;

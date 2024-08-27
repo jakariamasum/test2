@@ -13,11 +13,16 @@ const getPageFromDB = async () => {
 };
 
 const getPageByPathFromDB = async (path?: string) => {
-  const result = await Page.findOne({ path: path }).select("rows");
+  const result = await Page.findOne({ path: path }).select("rows").populate({
+    path: "rows.sections.sectionTitle",
+    select: "title",
+  });
   return result;
 };
 const getPageByIdFromDB = async (id: string) => {
-  const result = await Page.findOne({ _id: id });
+  const result = await Page.findOne({ _id: id }).populate({
+    path: "rows.sections.sectionTitle",
+  });
   return result;
 };
 const getPageByLanguageFromDB = async (language: string) => {

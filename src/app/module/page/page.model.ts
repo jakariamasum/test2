@@ -2,7 +2,11 @@ import { model, Schema } from "mongoose";
 import { TPage, TRowData, TSectionData } from "./page.interface";
 
 const SectionDataSchema = new Schema<TSectionData>({
-  sectionTitle: { type: String, required: true },
+  sectionTitle: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
   backgroundColor: { type: String },
   desktopGrid: { type: String },
   color: { type: String },
