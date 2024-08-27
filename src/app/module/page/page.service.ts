@@ -16,6 +16,10 @@ const getPageByPathFromDB = async (path?: string) => {
   const result = await Page.findOne({ path: path }).select("rows");
   return result;
 };
+const getPageByIdFromDB = async (id: string) => {
+  const result = await Page.findOne({ _id: id });
+  return result;
+};
 const getPageByLanguageFromDB = async (language: string) => {
   const result = await Page.findOne({ language: language });
   return result;
@@ -39,4 +43,5 @@ export const pageServices = {
   updatePageIntoDB,
   deletePageFromDB,
   getPageByLanguageFromDB,
+  getPageByIdFromDB,
 };

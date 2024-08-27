@@ -42,6 +42,19 @@ const getPageByPath = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getPageById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await pageServices.getPageByIdFromDB(id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Pages retrived successfully!",
+    data: result,
+  });
+});
 const getPageByLanguage = catchAsync(async (req, res) => {
   const { language } = req.params;
   const result = await pageServices.getPageByLanguageFromDB(language);
@@ -90,4 +103,5 @@ export const PageControllers = {
   updatePage,
   deletePage,
   getPageByLanguage,
+  getPageById,
 };

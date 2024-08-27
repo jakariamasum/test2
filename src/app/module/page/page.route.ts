@@ -2,6 +2,8 @@ import express from "express";
 import validateRequest from "../../middlewares/validateRequest";
 import { PageControllers } from "./page.controller";
 import { pageValidations } from "./page.validate";
+import verifyJWT from "../../middlewares/verifyMiddlewar";
+import verifyAdmin from "../../middlewares/verifyAdmin";
 
 const router = express.Router();
 
@@ -9,14 +11,24 @@ const router = express.Router();
 router.post(
   "/admin",
   validateRequest(pageValidations.createPageValidationSchema),
+  verifyJWT,
+  verifyAdmin,
   PageControllers.createPage
 );
 router.put(
-  "/:page_id",
+  "/admin/:page_id",
   validateRequest(pageValidations.updatePageValidationSchema),
+  verifyJWT,
+  verifyAdmin,
   PageControllers.updatePage
 );
-router.delete("/:page_id", PageControllers.deletePage);
+router.get(
+  "/edit-page/:id",
+  verifyJWT,
+  verifyAdmin,
+  PageControllers.getPageById
+);
+router.delete("/:page_id", verifyJWT, verifyAdmin, PageControllers.deletePage);
 
 //public routes
 router.get("/", PageControllers.getPages);
