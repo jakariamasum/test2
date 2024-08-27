@@ -9,7 +9,8 @@ const SectionDataSchema = new Schema<TSectionData>({
   mobileGrid: { type: String },
   sectionLimit: { type: String },
   imgPosition: { type: String },
-  width: { type: String },
+  width: { type: String, required: true },
+  box: { type: String, required: true },
 });
 
 const RowDataSchema = new Schema<TRowData>({

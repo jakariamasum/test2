@@ -6,7 +6,8 @@ export type TSectionData = {
   mobileGrid: string;
   sectionLimit: string;
   imgPosition?: string;
-  width?: string;
+  width: string;
+  box: string;
 };
 
 export type TRowData = {

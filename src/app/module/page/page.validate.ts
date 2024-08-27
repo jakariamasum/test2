@@ -4,6 +4,7 @@ const SectionDataSchema = z.object({
   sectionTitle: z.string(),
   backgroundColor: z.string().optional(),
   desktopGrid: z.string().optional(),
+  box: z.string().optional(),
 });
 
 // Zod schema for RowData
