@@ -27,5 +27,22 @@ const getAllLanguage = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const updateLanguage = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await languageServices.updateLanguageIntoDB(id, req.body);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Language updated successfully!",
+    data: result,
+  });
+});
 
-export const languageControllers = { createLanguage, getAllLanguage };
+export const languageControllers = {
+  createLanguage,
+  getAllLanguage,
+  updateLanguage,
+};

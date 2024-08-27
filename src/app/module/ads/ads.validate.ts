@@ -8,7 +8,7 @@ export const AdSectionSchema = z.object({
     z.string().min(1),
     z.object({
       image: z.string().url().min(1),
-      link: z.string().url().min(1),
+      link: z.string(),
     }),
   ]),
 });
@@ -20,8 +20,8 @@ const updateAdSectionSchema = z.object({
     z.string().min(1),
     z
       .object({
-        image: z.string().url().min(1),
-        link: z.string().url().min(1),
+        image: z.string(),
+        link: z.string(),
       })
       .optional(),
   ]),

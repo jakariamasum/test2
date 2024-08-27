@@ -16,6 +16,14 @@ router.post(
   languageControllers.createLanguage
 );
 
+router.put(
+  "/admin/:id",
+  validateRequest(languageValidations.updateLanguageValidationSchema),
+  verifyJWT,
+  verifyAdmin,
+  languageControllers.updateLanguage
+);
+
 //public routes
 router.get("/", languageControllers.getAllLanguage);
 
