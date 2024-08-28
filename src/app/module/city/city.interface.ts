@@ -1,3 +1,3 @@
-type TCity = {
+export type TCity = {
   title: string;
 };

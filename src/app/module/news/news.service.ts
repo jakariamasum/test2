@@ -43,6 +43,7 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
   console.log(result);
   return result;
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getNewsByUserFromDB = async (id: any) => {
   const result = await News.find({ author: id })
     .populate("category.category")

@@ -5,7 +5,6 @@ import sendResponse from "../../utils/sendResponse";
 import { userServices } from "./user.service";
 import { createToken } from "../../utils/tokenGenerateFunction";
 import config from "../../../config";
-import { JwtPayload } from "jsonwebtoken";
 
 const createUser = catchAsync(async (req, res) => {
   console.log(req.body);

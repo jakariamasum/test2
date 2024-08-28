@@ -74,7 +74,6 @@ const getNewsByCategory = catchAsync(async (req, res) => {
 
 const getNewsByCategoryIds = catchAsync(async (req, res) => {
   const { categories } = req.body;
-  const { lang } = req.query;
   if (!categories || !Array.isArray(categories) || categories.length === 0) {
     throw new AppError(400, "Invalid category IDs provided");
   }

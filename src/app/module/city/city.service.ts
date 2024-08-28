@@ -1,3 +1,4 @@
+import { TCity } from "./city.interface";
 import { City } from "./city.model";
 
 const createCityIntoDB = async (payload: TCity) => {

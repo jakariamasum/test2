@@ -1,3 +1,4 @@
+import { TCity } from "../city/city.interface";
 import { Area } from "./area.model";
 
 const createAreaIntoDB = async (payload: TCity) => {

@@ -1,4 +1,4 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model } from "mongoose";
 import { ICategory, ILocation, TNews } from "./news.interface";
 
 const LocationSchema = new Schema<ILocation>({

@@ -14,6 +14,7 @@ const AdsSchema = new Schema<TAds>({
     required: true,
     validate: [
       {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         validator: function (this: TAds, value: any) {
           if (this.type === "code") {
             return typeof value === "string";
