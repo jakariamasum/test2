@@ -25,7 +25,19 @@ router.put(
 router.delete("/admin/:news_id", newsControllers.deleteNews);
 
 //user route
+router.post(
+  "/user/news",
+  validateRequest(newsValidations.createNewsValidationSchema),
+  verifyJWT,
+  newsControllers.createNews
+);
 router.get("/my-news/all", verifyJWT, newsControllers.getNewsByUser);
+router.put("/user/news/edit/:news_id", verifyJWT, newsControllers.updateNews);
+router.delete(
+  "/user/news/delete/:news_id",
+  verifyJWT,
+  newsControllers.deleteNews
+);
 
 //public routes
 router.get("/", newsControllers.getNews);
