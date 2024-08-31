@@ -14,7 +14,7 @@ export interface TNews {
   title: string;
   content: string;
   tags: string[];
-  img: string;
+  img?: string;
   author: Types.ObjectId;
   location: ILocation;
   category: ICategory;

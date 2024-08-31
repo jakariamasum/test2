@@ -16,7 +16,7 @@ const NewsSchema = new Schema<TNews>(
     title: { type: String, required: true },
     content: { type: String, required: true },
     tags: { type: [String], required: true },
-    img: { type: String, required: true },
+    img: { type: String },
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     location: { type: LocationSchema, required: true },
     category: { type: CategorySchema, required: true },

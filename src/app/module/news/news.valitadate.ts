@@ -24,7 +24,7 @@ const createNewsValidationSchema = z.object({
     title: z.string().min(1, "Title is required"),
     content: z.string().min(1, "Content is required"),
     tags: z.array(z.string()).min(1, "At least one tag is required"),
-    img: z.string().min(1, "Image URL is required"),
+    img: z.string().optional(),
     author: z.string().min(1, "Author ID is required"),
     location: LocationSchema,
     category: CategorySchema,

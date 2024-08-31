@@ -29,7 +29,10 @@ const getPageByIdFromDB = async (id: string) => {
   return result;
 };
 const getPageByLanguageFromDB = async (language: string) => {
-  const result = await Page.findOne({ language: language });
+  const result = await Page.findOne({ language: language }).populate({
+    path: "rows.sections.sectionTitle",
+    select: "title",
+  });
   return result;
 };
 const updatePageIntoDB = async (id: string, payload: Partial<TPage>) => {
