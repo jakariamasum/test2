@@ -12,7 +12,7 @@ import globalErrorHandler from "./app/middlewares/globalErrorhandler";
 const app: Application = express();
 
 //parsers
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors());
 
 // Increase the request size limit
 app.use(express.json({ limit: "50mb" }));

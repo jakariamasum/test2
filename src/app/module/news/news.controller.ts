@@ -17,7 +17,14 @@ const createNews = catchAsync(async (req, res) => {
   });
 });
 const getNews = catchAsync(async (req, res) => {
-  const result = await newsServices.getNewsFromDB();
+  const { lang } = req.query;
+  console.log(lang);
+  let result;
+  if (lang) {
+    result = await newsServices.getNewsFromDB(lang as string);
+  } else {
+    result = await newsServices.getNewsFromDB();
+  }
   if (!result) {
     throw new AppError(404, "No data found");
   }

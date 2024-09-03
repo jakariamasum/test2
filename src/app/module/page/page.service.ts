@@ -29,6 +29,7 @@ const getPageByIdFromDB = async (id: string) => {
   return result;
 };
 const getPageByLanguageFromDB = async (language: string) => {
+  console.log(language);
   const result = await Page.findOne({ language: language }).populate({
     path: "rows.sections.sectionTitle",
     select: "title",
