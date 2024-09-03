@@ -10,7 +10,7 @@ const createNewsIntoDB = async (payload: TNews) => {
 const getNewsFromDB = async (lang?: string) => {
   console.log("lang", lang);
   let result;
-  if (lang) {
+  if (lang !== "all") {
     result = await News.find({ lang: lang })
       .populate("category.category")
       .populate("author");

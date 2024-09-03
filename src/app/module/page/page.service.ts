@@ -7,6 +7,7 @@ const createPageIntoDB = async (payload: TPage) => {
 };
 
 const getPageFromDB = async () => {
+  console.log("hit");
   const result = await Page.find().populate({
     path: "rows.sections.sectionTitle",
     select: "title",
@@ -16,6 +17,7 @@ const getPageFromDB = async () => {
 };
 
 const getPageByPathFromDB = async (path?: string) => {
+  console.log("path", path);
   const result = await Page.findOne({ path: path }).select("rows").populate({
     path: "rows.sections.sectionTitle",
     select: "title",
