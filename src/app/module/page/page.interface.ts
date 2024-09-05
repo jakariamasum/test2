@@ -1,7 +1,9 @@
-import { ObjectId } from "mongoose";
-
+export type TFileds = {
+  value: string;
+  label: string;
+};
 export type TSectionData = {
-  sectionTitle: ObjectId;
+  sectionTitle: string;
   color: string;
   backgroundColor: string;
   desktopGrid: string;
@@ -10,6 +12,7 @@ export type TSectionData = {
   imgPosition?: string;
   width: string;
   box: string;
+  categories: TFileds[];
 };
 
 export type TRowData = {

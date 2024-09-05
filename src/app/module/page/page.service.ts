@@ -7,35 +7,20 @@ const createPageIntoDB = async (payload: TPage) => {
 };
 
 const getPageFromDB = async () => {
-  console.log("hit");
-  const result = await Page.find().populate({
-    path: "rows.sections.sectionTitle",
-    select: "title",
-  });
-  console.log(result);
+  const result = await Page.find();
   return result;
 };
 
 const getPageByPathFromDB = async (path?: string) => {
-  console.log("path", path);
-  const result = await Page.findOne({ path: path }).select("rows").populate({
-    path: "rows.sections.sectionTitle",
-    select: "title",
-  });
+  const result = await Page.findOne({ path: path }).select("rows");
   return result;
 };
 const getPageByIdFromDB = async (id: string) => {
-  const result = await Page.findOne({ _id: id }).populate({
-    path: "rows.sections.sectionTitle",
-  });
+  const result = await Page.findOne({ _id: id });
   return result;
 };
 const getPageByLanguageFromDB = async (language: string) => {
-  console.log(language);
-  const result = await Page.findOne({ language: language }).populate({
-    path: "rows.sections.sectionTitle",
-    select: "title",
-  });
+  const result = await Page.findOne({ language: language });
   return result;
 };
 const updatePageIntoDB = async (id: string, payload: Partial<TPage>) => {

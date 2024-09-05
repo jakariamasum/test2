@@ -1,11 +1,15 @@
 import { model, Schema } from "mongoose";
-import { TPage, TRowData, TSectionData } from "./page.interface";
+import { TFileds, TPage, TRowData, TSectionData } from "./page.interface";
+
+const categoriesSchem = new Schema<TFileds>({
+  label: { type: String, required: true },
+  value: { type: String, required: true },
+});
 
 const SectionDataSchema = new Schema<TSectionData>({
   sectionTitle: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-    required: true,
+    type: String,
+    default: "",
   },
   backgroundColor: { type: String },
   desktopGrid: { type: String },
@@ -15,6 +19,7 @@ const SectionDataSchema = new Schema<TSectionData>({
   imgPosition: { type: String },
   width: { type: String, required: true },
   box: { type: String, required: true },
+  categories: { type: [categoriesSchem], required: true },
 });
 
 const RowDataSchema = new Schema<TRowData>({

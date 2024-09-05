@@ -1,16 +1,23 @@
 import { z } from "zod";
-
+export const FiledsSchema = z.object({
+  value: z.string(),
+  label: z.string(),
+});
+export const updateFiledsSchema = z.object({
+  value: z.string().optional(),
+  label: z.string().optional(),
+});
 const SectionDataSchema = z.object({
-  sectionTitle: z.string(),
   backgroundColor: z.string().optional(),
   desktopGrid: z.string().optional(),
   box: z.string().optional(),
+  categories: z.array(FiledsSchema),
 });
 const updateSectionDataSchema = z.object({
-  sectionTitle: z.string().optional(),
   backgroundColor: z.string().optional(),
   desktopGrid: z.string().optional(),
   box: z.string().optional(),
+  categories: z.array(updateFiledsSchema).optional(),
 });
 
 // Zod schema for RowData
