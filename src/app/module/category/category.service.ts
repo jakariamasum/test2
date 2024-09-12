@@ -11,7 +11,12 @@ const getCategoriesFromDB = async () => {
   return result;
 };
 const getCategoriesByLangFromDB = async (lang: string) => {
-  const result = await Category.find({ lang });
+  let result;
+  if (lang === "all") {
+    result = await Category.find();
+  } else {
+    result = await Category.find({ lang });
+  }
   return result;
 };
 const getSingleCategoryFromDB = async (id: string) => {

@@ -18,7 +18,6 @@ const createNews = catchAsync(async (req, res) => {
 });
 const getNews = catchAsync(async (req, res) => {
   const { lang } = req.query;
-  console.log(lang);
   const result = await newsServices.getNewsFromDB(lang as string);
 
   if (!result) {
@@ -108,19 +107,14 @@ const getNewsByCategoryIds = catchAsync(async (req, res) => {
 });
 
 const getNewsByUser = catchAsync(async (req, res) => {
-  console.log("hit hre");
-  console.log(req.decoded);
   const { userId } = req.decoded as JwtPayload;
-  console.log(userId);
   if (userId) {
     const user = await userServices.getSingleUserFromDB(userId);
-    console.log(user);
     if (!user) {
       throw new AppError(404, "No user found");
     }
     const id = user._id;
     const result = await newsServices.getNewsByUserFromDB(id);
-    console.log(result);
     if (!result) {
       throw new AppError(404, "No data found");
     }
@@ -137,7 +131,6 @@ const getNewsByUser = catchAsync(async (req, res) => {
 });
 const updateNews = catchAsync(async (req, res) => {
   const { news_id } = req.params;
-  console.log("hit id", news_id);
   const result = await newsServices.updateNewsIntoDB(news_id, req.body);
   if (!result) {
     throw new AppError(404, "No data found");

@@ -8,7 +8,6 @@ const createNewsIntoDB = async (payload: TNews) => {
 };
 
 const getNewsFromDB = async (lang?: string) => {
-  console.log("lang", lang);
   let result;
   if (lang !== "all") {
     result = await News.find({ lang: lang })
@@ -26,7 +25,6 @@ const getSingleNewsFromDB = async (id: string) => {
   return result;
 };
 const getNewsByLanguageFromDB = async (link: string) => {
-  console.log(link);
   const result = await News.find({ lang: link })
     .populate("category.category")
     .populate("author");
@@ -47,7 +45,6 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
       })
       .populate("author");
   }
-  console.log(result);
   return result;
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
