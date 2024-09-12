@@ -10,6 +10,10 @@ const getCategoriesFromDB = async () => {
   const result = await Category.find();
   return result;
 };
+const getCategoriesByLangFromDB = async (lang: string) => {
+  const result = await Category.find({ lang });
+  return result;
+};
 const getSingleCategoryFromDB = async (id: string) => {
   const result = await Category.findOne({ _id: id });
   return result;
@@ -33,6 +37,7 @@ export const categoryServices = {
   createCategoryIntoDB,
   getCategoriesFromDB,
   getSingleCategoryFromDB,
+  getCategoriesByLangFromDB,
   updateCategoryIntoDB,
   deleteCategoryFromDB,
 };

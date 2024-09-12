@@ -5,4 +5,5 @@ export type TSubCategory = {
   description?: string;
   category: Types.ObjectId;
   img?: string;
+  lang: string;
 };

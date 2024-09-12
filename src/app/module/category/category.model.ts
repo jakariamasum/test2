@@ -5,7 +5,7 @@ const CategorySchema = new Schema<TCategory>(
   {
     title: { type: String, required: true, unique: true },
     description: { type: String },
-    parent_category_id: { type: Schema.Types.ObjectId, ref: "Category" },
+    lang: { type: String, required: true },
     img: { type: String },
     position: { type: Number },
   },

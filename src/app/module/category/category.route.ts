@@ -31,5 +31,6 @@ router.delete(
 //public routes
 router.get("/", categoryControllers.getCategories);
 router.get("/:id", categoryControllers.getSingleCategory);
+router.get("/type/:lang", categoryControllers.getCategoriesByLang);
 
 export const categoryRoutes = router;

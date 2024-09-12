@@ -10,7 +10,12 @@ const getSubCategoryFromDB = async () => {
   const result = await SubCategory.find();
   return result;
 };
+const getSubCategoryByLangFromDB = async (lang: string) => {
+  const result = await SubCategory.find({ lang });
+  return result;
+};
 export const SubCategoryServices = {
   createSubCategoryIntoDB,
   getSubCategoryFromDB,
+  getSubCategoryByLangFromDB,
 };

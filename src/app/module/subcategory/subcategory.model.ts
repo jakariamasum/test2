@@ -18,6 +18,10 @@ const subCategorySchema = new Schema<TSubCategory>({
   img: {
     type: String,
   },
+  lang: {
+    type: String,
+    required: true,
+  },
 });
 
 export const SubCategory = model<TSubCategory>(

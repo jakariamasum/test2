@@ -18,5 +18,6 @@ router.post(
 
 //public routes
 router.get("/", SubCategoryControllers.getSubCategory);
+router.get("/:lang", SubCategoryControllers.getSubCategoryByLang);
 
 export const subCategoryRoutes = router;
