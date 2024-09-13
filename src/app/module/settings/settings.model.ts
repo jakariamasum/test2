@@ -29,6 +29,7 @@ const settingSchema = new Schema<TSetting>({
   kindlyNote: { type: String },
   order: { type: String },
   orderText: { type: String },
+  content: { type: String },
 });
 
 export const Setting = model<TSetting>("Setting", settingSchema);

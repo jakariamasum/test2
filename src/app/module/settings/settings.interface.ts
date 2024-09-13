@@ -26,4 +26,5 @@ export type TSetting = {
   kindlyNote: string;
   order: string;
   orderText: string;
+  content: string;
 };

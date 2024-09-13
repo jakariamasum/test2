@@ -29,6 +29,7 @@ const createSettingValidationSchema = z.object({
     kindlyNote: z.string().optional(),
     order: z.string().optional(),
     orderText: z.string().optional(),
+    content: z.string().optional(),
   }),
 });
 const updateSettingValidationSchema = z.object({
@@ -60,6 +61,7 @@ const updateSettingValidationSchema = z.object({
     kindlyNote: z.string().optional(),
     order: z.string().optional(),
     orderText: z.string().optional(),
+    content: z.string().optional(),
   }),
 });
 
