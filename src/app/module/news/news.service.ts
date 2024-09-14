@@ -33,7 +33,7 @@ const getNewsByLanguageFromDB = async (link: string) => {
 const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
   const objectId = new mongoose.Types.ObjectId(id);
   let result;
-  if (lang) {
+  if (lang !== "all") {
     result = await News.find({
       "category.category": objectId,
       lang: lang,
