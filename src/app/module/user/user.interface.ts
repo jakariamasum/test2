@@ -5,4 +5,5 @@ export interface TUser {
   role: "reporter" | "admin";
   img?: string;
   bio?: string;
+  preApproved: boolean;
 }

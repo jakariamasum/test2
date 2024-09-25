@@ -31,6 +31,7 @@ const UserSchema: Schema = new Schema<TUser>(
     },
     img: String,
     bio: String,
+    preApproved: { type: Boolean, default: false },
   },
   {
     timestamps: true,
