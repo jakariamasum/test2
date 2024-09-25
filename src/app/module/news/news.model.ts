@@ -21,6 +21,11 @@ const NewsSchema = new Schema<TNews>(
     location: { type: LocationSchema, required: true },
     category: { type: CategorySchema, required: true },
     lang: { type: String },
+    status: {
+      type: String,
+      enum: ["published", "pending"],
+      default: "pending",
+    },
   },
   { timestamps: true }
 );

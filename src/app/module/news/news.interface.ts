@@ -19,4 +19,5 @@ export interface TNews {
   location: ILocation;
   category: ICategory;
   lang?: string;
+  status: "published" | "pending";
 }
