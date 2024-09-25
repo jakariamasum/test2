@@ -20,4 +20,5 @@ export interface TNews {
   category: ICategory;
   lang?: string;
   status: "published" | "pending";
+  publishedDate: Date;
 }

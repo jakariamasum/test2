@@ -26,6 +26,7 @@ const NewsSchema = new Schema<TNews>(
       enum: ["published", "pending"],
       default: "pending",
     },
+    publishedDate: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
