@@ -32,6 +32,5 @@ router.delete("/:page_id", verifyJWT, verifyAdmin, PageControllers.deletePage);
 
 //public routes
 router.get("/", PageControllers.getPages);
-router.get("/:path", PageControllers.getPageByPath);
 router.get("/get-page/:language", PageControllers.getPageByLanguage);
 export const pageRoutes = router;

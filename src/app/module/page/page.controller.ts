@@ -28,20 +28,6 @@ const getPages = catchAsync(async (req, res) => {
   });
 });
 
-const getPageByPath = catchAsync(async (req, res) => {
-  const { path } = req.params;
-  const pathName = "/" + path;
-  const result = await pageServices.getPageByPathFromDB(pathName);
-  if (!result) {
-    throw new AppError(404, "No data found");
-  }
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: "Pages retrived successfully!",
-    data: result,
-  });
-});
 const getPageById = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await pageServices.getPageByIdFromDB(id);
@@ -99,7 +85,6 @@ const deletePage = catchAsync(async (req, res) => {
 export const PageControllers = {
   createPage,
   getPages,
-  getPageByPath,
   updatePage,
   deletePage,
   getPageByLanguage,

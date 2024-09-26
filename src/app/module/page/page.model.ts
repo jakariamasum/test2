@@ -31,11 +31,8 @@ const RowDataSchema = new Schema<TRowData>({
 
 const PageSchema = new Schema<TPage>({
   title: { type: String, required: true },
-  description: { type: String },
-  img: { type: String },
   rows: { type: [RowDataSchema], required: true },
   language: { type: String, required: true },
-  path: { type: String, required: true },
 });
 
 export const Page = model<TPage>("Page", PageSchema);

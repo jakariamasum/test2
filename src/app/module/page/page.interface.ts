@@ -24,9 +24,6 @@ export type TRowData = {
 
 export type TPage = {
   title: string;
-  description: string;
-  img: string;
   rows: TRowData[];
   language: string;
-  path: string;
 };

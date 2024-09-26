@@ -37,22 +37,16 @@ const updateRowDataSchema = z.object({
 const createPageValidationSchema = z.object({
   body: z.object({
     title: z.string().optional(),
-    description: z.string().optional(),
-    img: z.string().optional(),
     rows: z.array(createRowDataSchema).optional(),
     language: z.string(),
-    path: z.string(),
   }),
 });
 
 const updatePageValidationSchema = z.object({
   body: z.object({
     title: z.string().optional(),
-    description: z.string().optional(),
-    img: z.string().optional(),
     rows: z.array(updateRowDataSchema).optional(),
     language: z.string().optional(),
-    path: z.string().optional(),
   }),
 });
 
