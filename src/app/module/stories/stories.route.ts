@@ -15,6 +15,12 @@ router.post(
   verifyAdmin,
   storiesControllers.createStory
 );
+router.put(
+  "/admin/:id",
+  verifyJWT,
+  verifyAdmin,
+  storiesControllers.updateStory
+);
 
 //public routes
 router.get("/", storiesControllers.getStory);

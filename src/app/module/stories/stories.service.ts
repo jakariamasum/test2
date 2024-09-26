@@ -30,8 +30,23 @@ const getSingleStoryFromDB = async (id: string) => {
     });
   return result;
 };
+const updateStoryInDB = async (id: string, payload: Partial<TStory>) => {
+  const result = await Story.findByIdAndUpdate({ _id: id }, payload, {
+    new: true,
+  })
+    .populate({
+      path: "category",
+      select: "title _id",
+    })
+    .populate({
+      path: "subCategory",
+      select: "title _id",
+    });
+  return result;
+};
 export const storiesServices = {
   createStoryIntoDB,
   getStoriesFromDB,
   getSingleStoryFromDB,
+  updateStoryInDB,
 };
