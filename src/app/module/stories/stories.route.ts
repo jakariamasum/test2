@@ -21,6 +21,12 @@ router.put(
   verifyAdmin,
   storiesControllers.updateStory
 );
+router.delete(
+  "/admin/:id",
+  verifyJWT,
+  verifyAdmin,
+  storiesControllers.deleteStory
+);
 
 //public routes
 router.get("/", storiesControllers.getStory);

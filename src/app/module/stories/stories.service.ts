@@ -44,9 +44,22 @@ const updateStoryInDB = async (id: string, payload: Partial<TStory>) => {
     });
   return result;
 };
+const deleteStoryFromDB = async (id: string) => {
+  const result = await Story.findByIdAndDelete({ _id: id })
+    .populate({
+      path: "category",
+      select: "title _id",
+    })
+    .populate({
+      path: "subCategory",
+      select: "title _id",
+    });
+  return result;
+};
 export const storiesServices = {
   createStoryIntoDB,
   getStoriesFromDB,
   getSingleStoryFromDB,
   updateStoryInDB,
+  deleteStoryFromDB,
 };

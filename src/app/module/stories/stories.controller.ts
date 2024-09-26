@@ -53,10 +53,24 @@ const updateStory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const deleteStory = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await storiesServices.deleteStoryFromDB(id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Story deleted successfully!",
+    data: result,
+  });
+});
 
 export const storiesControllers = {
   createStory,
   getStory,
   getSingleStory,
   updateStory,
+  deleteStory,
 };
