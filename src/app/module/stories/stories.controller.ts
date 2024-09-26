@@ -27,8 +27,22 @@ const getStory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getSingleStory = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await storiesServices.getSingleStoryFromDB(id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Story retrived successfully!",
+    data: result,
+  });
+});
 
 export const storiesControllers = {
   createStory,
   getStory,
+  getSingleStory,
 };

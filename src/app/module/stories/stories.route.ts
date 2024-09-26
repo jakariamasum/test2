@@ -18,5 +18,6 @@ router.post(
 
 //public routes
 router.get("/", storiesControllers.getStory);
+router.get("/:id", storiesControllers.getSingleStory);
 
 export const storiesRoutes = router;
