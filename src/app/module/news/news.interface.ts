@@ -21,4 +21,5 @@ export interface TNews {
   lang?: string;
   status: "published" | "pending";
   publishedDate: Date;
+  waterMark?: string;
 }

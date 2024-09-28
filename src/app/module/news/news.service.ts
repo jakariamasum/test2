@@ -10,7 +10,7 @@ const createNewsIntoDB = async (payload: TNews) => {
 const getNewsFromDB = async (lang?: string) => {
   let result;
   if (lang !== "all") {
-    result = await News.find({ lang: lang })
+    result = await News.find({ lang: lang, status: "published" })
       .populate("category.category")
       .populate("author");
   } else {
@@ -37,6 +37,7 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
     result = await News.find({
       "category.category": objectId,
       lang: lang,
+      status: "published",
     }).populate("category.category");
   } else {
     result = await News.find({ "category.category": objectId })
