@@ -4,6 +4,7 @@ const createCategoryValidationSchema = z.object({
   body: z.object({
     title: z.string(),
     lang: z.string(),
+    type: z.string().optional(),
   }),
 });
 const updateCategoryValidationSchema = z.object({
@@ -13,6 +14,7 @@ const updateCategoryValidationSchema = z.object({
     lang: z.string().optional(),
     img: z.string().optional(),
     position: z.number().optional(),
+    type: z.string().optional(),
   }),
 });
 

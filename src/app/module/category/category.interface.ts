@@ -4,4 +4,5 @@ export type TCategory = {
   lang: string;
   position?: number;
   img?: string;
+  type: string;
 };

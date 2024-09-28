@@ -8,6 +8,7 @@ const CategorySchema = new Schema<TCategory>(
     lang: { type: String, required: true },
     img: { type: String },
     position: { type: Number },
+    type: { type: String },
   },
   {
     timestamps: true,
