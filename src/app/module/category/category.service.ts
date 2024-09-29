@@ -7,22 +7,20 @@ const createCategoryIntoDB = async (payload: TCategory) => {
 };
 
 const getCategoriesFromDB = async () => {
-  const result = await Category.find();
+  const result = await Category.find({ type: "news" });
   return result;
 };
 const getCategoriesByLangFromDB = async (lang: string) => {
   let result;
   if (lang === "all") {
-    result = await Category.find();
+    result = await Category.find({ type: "news" });
   } else {
-    result = await Category.find({ lang });
+    result = await Category.find({ lang, type: "news" });
   }
   return result;
 };
 const getVideoOrStoriesCategoryFromDB = async (type: string) => {
-  console.log(type);
   const result = await Category.find({ type: type });
-  console.log(result);
   return result;
 };
 const getSingleCategoryFromDB = async (id: string) => {

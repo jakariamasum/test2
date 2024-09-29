@@ -39,9 +39,24 @@ const getSubCategoryByLang = catchAsync(async (req, res) => {
     data: result,
   });
 });
-
+const getVideoOrStoriesSubCategory = catchAsync(async (req, res) => {
+  const { type } = req.query;
+  const result = await SubCategoryServices.getVideoOrStoriesSubCategoryFromDB(
+    type as string
+  );
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Sub-category retrived successfully!",
+    data: result,
+  });
+});
 export const SubCategoryControllers = {
   createSubCategory,
   getSubCategory,
   getSubCategoryByLang,
+  getVideoOrStoriesSubCategory,
 };

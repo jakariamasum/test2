@@ -22,6 +22,7 @@ const subCategorySchema = new Schema<TSubCategory>({
     type: String,
     required: true,
   },
+  type: { type: String, required: true },
 });
 
 export const SubCategory = model<TSubCategory>(
