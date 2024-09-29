@@ -10,10 +10,5 @@ export type TSetting = {
   title: string;
   bgColor: string;
   copyright: string;
-  whatsApp: number;
-  telegram: string;
-  kindlyNote: string;
-  order: string;
-  orderText: string;
   content: string;
 };
