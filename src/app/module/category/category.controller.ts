@@ -52,6 +52,21 @@ const getSingleCategory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getVideoOrStoriesCategory = catchAsync(async (req, res) => {
+  const { type } = req.query;
+  const result = await categoryServices.getVideoOrStoriesCategoryFromDB(
+    type as string
+  );
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Category retrived successfully!",
+    data: result,
+  });
+});
 const updateCategory = catchAsync(async (req, res) => {
   const { category_id } = req.params;
   const result = await categoryServices.updateCategoryIntoDB(
@@ -89,4 +104,5 @@ export const categoryControllers = {
   getSingleCategory,
   updateCategory,
   deleteCategory,
+  getVideoOrStoriesCategory,
 };

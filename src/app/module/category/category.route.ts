@@ -32,5 +32,6 @@ router.delete(
 router.get("/", categoryControllers.getCategories);
 router.get("/:id", categoryControllers.getSingleCategory);
 router.get("/type/:lang", categoryControllers.getCategoriesByLang);
+router.get("/category/types", categoryControllers.getVideoOrStoriesCategory);
 
 export const categoryRoutes = router;

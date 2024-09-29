@@ -19,6 +19,12 @@ const getCategoriesByLangFromDB = async (lang: string) => {
   }
   return result;
 };
+const getVideoOrStoriesCategoryFromDB = async (type: string) => {
+  console.log(type);
+  const result = await Category.find({ type: type });
+  console.log(result);
+  return result;
+};
 const getSingleCategoryFromDB = async (id: string) => {
   const result = await Category.findOne({ _id: id });
   return result;
@@ -45,4 +51,5 @@ export const categoryServices = {
   getCategoriesByLangFromDB,
   updateCategoryIntoDB,
   deleteCategoryFromDB,
+  getVideoOrStoriesCategoryFromDB,
 };
