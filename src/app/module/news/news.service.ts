@@ -25,7 +25,11 @@ const getSingleNewsFromDB = async (id: string) => {
   return result;
 };
 const getNewsByLanguageFromDB = async (link: string) => {
-  const result = await News.find({ lang: link })
+  const currentDate = new Date();
+  const result = await News.find({
+    lang: link,
+    publishedDate: { $lte: currentDate },
+  })
     .populate("category.category")
     .populate("author");
   return result;
