@@ -54,9 +54,41 @@ const getVideoOrStoriesSubCategory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+const updateSubCategory = catchAsync(async (req, res) => {
+  const { category_id } = req.params;
+  const result = await SubCategoryServices.updateSubCategoryIntoDB(
+    category_id,
+    req.body
+  );
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Sub Category updated successfully!",
+    data: result,
+  });
+});
+const deleteSubCategory = catchAsync(async (req, res) => {
+  const { category_id } = req.params;
+  const result = await SubCategoryServices.deleteSubCategoryFromDB(category_id);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Category delete successfully!",
+    data: result,
+  });
+});
 export const SubCategoryControllers = {
   createSubCategory,
   getSubCategory,
   getSubCategoryByLang,
   getVideoOrStoriesSubCategory,
+  updateSubCategory,
+  deleteSubCategory,
 };

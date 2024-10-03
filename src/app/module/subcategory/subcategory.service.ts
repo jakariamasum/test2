@@ -19,9 +19,27 @@ const getVideoOrStoriesSubCategoryFromDB = async (type: string) => {
   console.log(type, result);
   return result;
 };
+
+const updateSubCategoryIntoDB = async (
+  id: string,
+  payload: Partial<TSubCategory>
+) => {
+  const result = await SubCategory.findByIdAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
+const deleteSubCategoryFromDB = async (id: string) => {
+  const result = await SubCategory.findByIdAndDelete({ _id: id });
+  return result;
+};
+
 export const SubCategoryServices = {
   createSubCategoryIntoDB,
   getSubCategoryFromDB,
   getSubCategoryByLangFromDB,
   getVideoOrStoriesSubCategoryFromDB,
+  updateSubCategoryIntoDB,
+  deleteSubCategoryFromDB,
 };

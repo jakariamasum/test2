@@ -16,6 +16,20 @@ router.post(
   SubCategoryControllers.createSubCategory
 );
 
+router.put(
+  "/admin/:category_id",
+  validateRequest(SubCategoryValidations.updateSubCategoryValidationSchema),
+  verifyJWT,
+  verifyAdmin,
+  SubCategoryControllers.updateSubCategory
+);
+router.delete(
+  "/admin/:category_id",
+  verifyJWT,
+  verifyAdmin,
+  SubCategoryControllers.deleteSubCategory
+);
+
 //public routes
 router.get("/", SubCategoryControllers.getSubCategory);
 router.get("/:lang", SubCategoryControllers.getSubCategoryByLang);
