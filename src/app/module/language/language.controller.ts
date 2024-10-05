@@ -15,7 +15,13 @@ const createLanguage = catchAsync(async (req, res) => {
   });
 });
 const getAllLanguage = catchAsync(async (req, res) => {
-  const result = await languageServices.getAllLanguageFromDB();
+  const { lang } = req.query;
+  let result;
+  if (lang) {
+    result = await languageServices.getAllLanguageFromDB(lang as string);
+  } else {
+    result = await languageServices.getAllLanguageFromDB();
+  }
   console.log(result);
   if (!result) {
     throw new AppError(404, "No data found");

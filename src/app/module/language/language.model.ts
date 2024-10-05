@@ -14,6 +14,13 @@ const languageSchema = new Schema<TLanguage>(
       type: String,
     },
     status: { type: String, enum: ["active,inactive"], default: "active" },
+    relatedPost: { type: String },
+    popularPost: { type: String },
+    orderPolicy: { type: String },
+    copyright: { type: String },
+    privacy: { type: String },
+    seeAll: { type: String },
+    terms: { type: String },
   },
   {
     timestamps: true,
