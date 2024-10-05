@@ -3,4 +3,5 @@ export type TLanguage = {
   language_code: string;
   language_type: "0" | "1";
   link: string;
+  status: "active" | "inactive";
 };
