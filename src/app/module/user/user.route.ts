@@ -41,5 +41,6 @@ router.post("/verify-user", verifyJWT, userControllers.verifyUser);
 //public routes
 router.post("/login", userControllers.loginUser);
 router.get("/:id", userControllers.getSingleUser);
+router.get("/get-all/get", userControllers.getAllUser);
 
 export const userRoutes = router;

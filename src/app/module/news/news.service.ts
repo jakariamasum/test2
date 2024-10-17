@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { TNews } from "./news.interface";
+import mongoose, { FilterQuery } from "mongoose";
+import { SearchParams, TNews } from "./news.interface";
 import News from "./news.model";
 
 const createNewsIntoDB = async (payload: TNews) => {
@@ -7,16 +7,64 @@ const createNewsIntoDB = async (payload: TNews) => {
   return result;
 };
 
-const getNewsFromDB = async (lang?: string) => {
-  let result;
-  if (lang !== "all") {
-    result = await News.find({ lang: lang, status: "published" })
-      .populate("category.category")
-      .populate("author");
-  } else {
-    result = await News.find().populate("category.category").populate("author");
+const getNewsFromDB = async (lang: string, params: SearchParams) => {
+  const {
+    dateFrom,
+    dateTo,
+    author,
+    category,
+    status = "published",
+    page = 1,
+    limit = 10,
+    city,
+  } = params;
+  console.log(params);
+
+  const query: FilterQuery<TNews> = {};
+
+  if (lang && lang !== "all") {
+    query.lang = lang;
+  } else query.lang = "all";
+
+  if (status) {
+    query.status = status;
   }
-  return result;
+
+  if (dateFrom || dateTo) {
+    query.createdAt = {};
+    if (dateFrom) {
+      query.createdAt.$gte = new Date(dateFrom);
+    }
+    if (dateTo) {
+      query.createdAt.$lte = new Date(dateTo);
+    }
+  }
+
+  if (author) {
+    query.author = author;
+  }
+
+  if (category) {
+    query["category.category"] = category;
+  }
+  if (city) {
+    query["location.city"] = city;
+  }
+
+  const skip = (page - 1) * limit;
+
+  const [news] = await Promise.all([
+    News.find(query)
+      .populate("category.category")
+      .populate("author")
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean(),
+  ]);
+  console.log(params);
+
+  return news;
 };
 const getSingleNewsFromDB = async (id: string) => {
   const result = await News.findOne({ _id: id })

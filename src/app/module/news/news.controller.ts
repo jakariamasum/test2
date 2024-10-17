@@ -17,8 +17,8 @@ const createNews = catchAsync(async (req, res) => {
   });
 });
 const getNews = catchAsync(async (req, res) => {
-  const { lang } = req.query;
-  const result = await newsServices.getNewsFromDB(lang as string);
+  const { lang, ...searchParams } = req.query;
+  const result = await newsServices.getNewsFromDB(lang as string, searchParams);
 
   if (!result) {
     throw new AppError(404, "No data found");

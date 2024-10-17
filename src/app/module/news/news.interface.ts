@@ -23,3 +23,16 @@ export interface TNews {
   publishedDate: Date;
   waterMark?: string;
 }
+
+export interface SearchParams {
+  lang?: string;
+  dateFrom?: string;
+  dateTo?: string;
+  author?: string;
+  category?: string;
+  storyType?: "Text" | "Story" | "Video" | "All";
+  status?: string;
+  page?: number;
+  limit?: number;
+  city?: string;
+}
