@@ -15,6 +15,7 @@ router.post(
   verifyAdmin,
   cityControllers.createCity
 );
+router.put("/admin/:id", verifyJWT, verifyAdmin, cityControllers.updateCity);
 
 //public routes
 router.get("/", cityControllers.getAllCities);

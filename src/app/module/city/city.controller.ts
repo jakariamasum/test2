@@ -27,5 +27,18 @@ const getAllCities = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const updateCity = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await cityServices.updateCityInDB(id, req.body);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "City updated successfully!",
+    data: result,
+  });
+});
 
-export const cityControllers = { createCity, getAllCities };
+export const cityControllers = { createCity, getAllCities, updateCity };
