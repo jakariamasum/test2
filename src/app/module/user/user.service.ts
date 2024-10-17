@@ -29,9 +29,17 @@ const deleteUserFromDB = async (id: string) => {
 };
 
 const loginUserFromDB = async (email: string, password: string) => {
-  console.log(email, password);
   const user = await User.login(email, password);
   return user;
+};
+
+const changePasswordIntoDB = async (userId: string, password: string) => {
+  const result = await User.findByIdAndUpdate(
+    { _id: userId },
+    { password: password },
+    { new: true }
+  );
+  return result;
 };
 
 export const userServices = {
@@ -41,4 +49,5 @@ export const userServices = {
   updateUserIntoDB,
   deleteUserFromDB,
   loginUserFromDB,
+  changePasswordIntoDB,
 };

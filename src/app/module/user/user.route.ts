@@ -21,6 +21,12 @@ router.put(
   verifyAdmin,
   userControllers.updateUser
 );
+router.put(
+  "/admin/change-password/:id",
+  verifyJWT,
+  verifyAdmin,
+  userControllers.changePassword
+);
 router.delete(
   "/admin/:user_id",
   verifyJWT,

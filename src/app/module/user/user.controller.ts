@@ -5,11 +5,12 @@ import sendResponse from "../../utils/sendResponse";
 import { userServices } from "./user.service";
 import { createToken } from "../../utils/tokenGenerateFunction";
 import config from "../../../config";
+import bcrypt from "bcrypt";
+import { User } from "./user.model";
 
 const createUser = catchAsync(async (req, res) => {
   console.log(req.body);
   const result = await userServices.createUserIntoDB(req.body);
-  console.log("user created", result);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
@@ -19,7 +20,6 @@ const createUser = catchAsync(async (req, res) => {
 });
 const getAllUser = catchAsync(async (req, res) => {
   const result = await userServices.getAllUserFromDB();
-  console.log(result);
   if (!result) {
     throw new AppError(404, "No data found");
   }
@@ -32,9 +32,7 @@ const getAllUser = catchAsync(async (req, res) => {
 });
 const getSingleUser = catchAsync(async (req, res) => {
   const { id } = req.params;
-  console.log("id", id);
   const result = await userServices.getSingleUserFromDB(id);
-  console.log("cnt", result);
   if (!result) {
     throw new AppError(404, "No data found");
   }
@@ -74,9 +72,7 @@ const deleteUser = catchAsync(async (req, res) => {
 });
 const loginUser = catchAsync(async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
   const result = await userServices.loginUserFromDB(email, password);
-  console.log("cnt", result);
   if (!result) {
     throw new AppError(404, "Login failed");
   }
@@ -86,7 +82,6 @@ const loginUser = catchAsync(async (req, res) => {
     config.jwt_expires_in as string
   );
   const response = { ...result, token };
-  console.log("tkn", token);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
@@ -97,7 +92,6 @@ const loginUser = catchAsync(async (req, res) => {
 
 const verifyUser = catchAsync(async (req, res) => {
   const decoded = req.decoded;
-  // console.log("decoded", decoded);
   const user = await userServices.getSingleUserFromDB(
     decoded?.userId as string
   );
@@ -111,6 +105,31 @@ const verifyUser = catchAsync(async (req, res) => {
 
   return res.status(200).json({ message: "User verified", data: user });
 });
+
+const changePassword = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+  const user = await User.findById(id as string);
+  if (!user) {
+    throw new AppError(404, "No user found");
+  }
+  const hashedPassword = await bcrypt.hash(
+    password,
+    Number(config.bcrypt_salt_rounds)
+  );
+  const result = await userServices.changePasswordIntoDB(id, hashedPassword);
+  if (!result) {
+    throw new AppError(404, "Something went wrong");
+  }
+  console.log(result);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Password change successfully!",
+    data: result,
+  });
+});
+
 export const userControllers = {
   createUser,
   getAllUser,
@@ -119,4 +138,5 @@ export const userControllers = {
   deleteUser,
   loginUser,
   verifyUser,
+  changePassword,
 };
