@@ -24,7 +24,7 @@ const getNewsFromDB = async (lang: string, params: SearchParams) => {
 
   if (lang && lang !== "all") {
     query.lang = lang;
-  } else query.lang = "all";
+  }
 
   if (status) {
     query.status = status;
