@@ -14,6 +14,10 @@ const settingSchema = new Schema<TSetting>({
   bgColor: { type: String },
   copyright: { type: String },
   content: { type: String },
+  categoryStyle: { type: String },
+  detailsStyle: { type: String },
+  header: { type: String },
+  footer: { type: String },
 });
 
 export const Setting = model<TSetting>("Setting", settingSchema);

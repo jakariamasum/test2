@@ -11,4 +11,8 @@ export type TSetting = {
   bgColor: string;
   copyright: string;
   content: string;
+  header: string;
+  footer: string;
+  categoryStyle: string;
+  detailsStyle: string;
 };
