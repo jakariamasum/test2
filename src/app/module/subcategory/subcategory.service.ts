@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { TSubCategory } from "./subcategory.interface";
 import { SubCategory } from "./subcategory.model";
 
@@ -8,6 +9,11 @@ const createSubCategoryIntoDB = async (payload: TSubCategory) => {
 
 const getSubCategoryFromDB = async () => {
   const result = await SubCategory.find({ type: "news" });
+  return result;
+};
+const getSubCategoryByCategoryFromDB = async (id: string) => {
+  const objectId = new mongoose.Types.ObjectId(id);
+  const result = await SubCategory.find({ category: objectId, type: "news" });
   return result;
 };
 const getSubCategoryByLangFromDB = async (lang: string) => {
@@ -42,4 +48,5 @@ export const SubCategoryServices = {
   getVideoOrStoriesSubCategoryFromDB,
   updateSubCategoryIntoDB,
   deleteSubCategoryFromDB,
+  getSubCategoryByCategoryFromDB,
 };

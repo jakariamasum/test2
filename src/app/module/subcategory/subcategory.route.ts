@@ -32,6 +32,7 @@ router.delete(
 
 //public routes
 router.get("/", SubCategoryControllers.getSubCategory);
+router.get("/category/:id", SubCategoryControllers.getSubCategoryByCategory);
 router.get("/:lang", SubCategoryControllers.getSubCategoryByLang);
 router.get(
   "/sub-category/types",

@@ -98,6 +98,7 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
       })
       .populate("author");
   }
+  console.log(result);
   return result;
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
