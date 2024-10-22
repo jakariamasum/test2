@@ -7,8 +7,12 @@ export interface ILocation {
 
 export interface ICategory {
   category: Types.ObjectId;
-  subCategory?: string;
+  subCategory?: Types.ObjectId | string;
 }
+export type TStories = {
+  img: string;
+  title: string;
+};
 
 export interface TNews {
   title: string;
@@ -22,6 +26,8 @@ export interface TNews {
   status: "published" | "pending";
   publishedDate: Date;
   waterMark?: string;
+  stories?: TStories[];
+  video?: string;
 }
 
 export interface SearchParams {

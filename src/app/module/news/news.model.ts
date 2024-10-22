@@ -8,20 +8,26 @@ const LocationSchema = new Schema<ILocation>({
 
 const CategorySchema = new Schema<ICategory>({
   category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
-  subCategory: { type: String },
+  subCategory: { type: Schema.Types.Mixed },
+});
+const StorySchema: Schema = new Schema({
+  img: { type: String },
+  title: { type: String },
 });
 
 const NewsSchema = new Schema<TNews>(
   {
     title: { type: String, required: true },
-    content: { type: String, required: true },
-    tags: { type: [String], required: true },
+    content: { type: String },
+    tags: { type: [String] },
     img: { type: String },
     waterMark: { type: String },
-    author: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    location: { type: LocationSchema, required: true },
+    author: { type: Schema.Types.ObjectId, ref: "User" },
+    location: { type: LocationSchema },
     category: { type: CategorySchema, required: true },
     lang: { type: String },
+    stories: { type: [StorySchema] },
+    video: { type: String },
     status: {
       type: String,
       enum: ["published", "pending"],

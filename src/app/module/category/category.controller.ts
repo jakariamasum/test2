@@ -15,7 +15,8 @@ const createCategory = catchAsync(async (req, res) => {
   });
 });
 const getCategories = catchAsync(async (req, res) => {
-  const result = await categoryServices.getCategoriesFromDB();
+  const { lang } = req.query;
+  const result = await categoryServices.getCategoriesFromDB(lang as string);
   if (!result) {
     throw new AppError(404, "No data found");
   }

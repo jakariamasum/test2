@@ -6,8 +6,13 @@ const createCategoryIntoDB = async (payload: TCategory) => {
   return result;
 };
 
-const getCategoriesFromDB = async () => {
-  const result = await Category.find({ type: "news" });
+const getCategoriesFromDB = async (lang?: string) => {
+  let result;
+  if (lang === "all") {
+    result = await Category.find();
+  } else {
+    result = await Category.find({ type: "news" });
+  }
   return result;
 };
 const getCategoriesByLangFromDB = async (lang: string) => {

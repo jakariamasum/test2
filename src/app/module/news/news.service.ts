@@ -75,7 +75,7 @@ const getSingleNewsFromDB = async (id: string) => {
 const getNewsByLanguageFromDB = async (link: string) => {
   const currentDate = new Date();
   const result = await News.find({
-    lang: link,
+    $or: [{ lang: link }, { lang: "story" }, { lang: "video" }],
     publishedDate: { $lte: currentDate },
   })
     .populate("category.category")
