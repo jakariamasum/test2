@@ -73,6 +73,7 @@ const getSingleNewsFromDB = async (id: string) => {
   return result;
 };
 const getNewsByLanguageFromDB = async (link: string) => {
+  console.log(link);
   const currentDate = new Date();
   const result = await News.find({
     $or: [{ lang: link }, { lang: "story" }, { lang: "video" }],
@@ -80,6 +81,7 @@ const getNewsByLanguageFromDB = async (link: string) => {
   })
     .populate("category.category")
     .populate("author");
+  console.log(result);
   return result;
 };
 const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
@@ -120,6 +122,15 @@ const deleteNewsFromDB = async (id: string) => {
   return result;
 };
 
+const getStoriesFromDB = async () => {
+  const result = await News.find({ lang: "story" });
+  return result;
+};
+const getVideoesFromDB = async () => {
+  const result = await News.find({ lang: "video" });
+  return result;
+};
+
 export const newsServices = {
   createNewsIntoDB,
   getNewsFromDB,
@@ -129,4 +140,6 @@ export const newsServices = {
   getNewsByUserFromDB,
   updateNewsIntoDB,
   deleteNewsFromDB,
+  getStoriesFromDB,
+  getVideoesFromDB,
 };

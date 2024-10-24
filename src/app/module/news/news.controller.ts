@@ -30,6 +30,33 @@ const getNews = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getStories = catchAsync(async (req, res) => {
+  console.log("hit hre story");
+  const result = await newsServices.getStoriesFromDB();
+
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Stories retrived successfully!",
+    data: result,
+  });
+});
+const getVideos = catchAsync(async (req, res) => {
+  const result = await newsServices.getVideoesFromDB();
+
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Videos retrived successfully!",
+    data: result,
+  });
+});
 const getNewsByLanguage = catchAsync(async (req, res) => {
   const { lang } = req.params;
   const result = await newsServices.getNewsByLanguageFromDB(lang);
@@ -166,4 +193,6 @@ export const newsControllers = {
   deleteNews,
   getNewsByCategoryIds,
   getSingleNewsById,
+  getStories,
+  getVideos,
 };
