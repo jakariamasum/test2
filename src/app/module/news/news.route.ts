@@ -44,6 +44,10 @@ router.get("/", newsControllers.getNews);
 router.get("/:lang", newsControllers.getNewsByLanguage);
 router.get("/each-news/:id", newsControllers.getSingleNewsById);
 router.get("/category-news/:category_id", newsControllers.getNewsByCategory);
+router.get(
+  "/sub-category-news/:sub_category_id",
+  newsControllers.getNewsBySubCategory
+);
 router.get("/type/stories", newsControllers.getStories);
 router.get("/type/videos", newsControllers.getVideos);
 

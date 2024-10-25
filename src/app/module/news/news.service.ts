@@ -103,6 +103,24 @@ const getNewsByCategoryFromDB = async (id: string, lang?: string) => {
   console.log(result);
   return result;
 };
+const getNewsBySubCategoryFromDB = async (id: string, lang?: string) => {
+  let result;
+  if (lang !== "all") {
+    result = await News.find({
+      "category.subCategory": id,
+      lang: lang,
+      status: "published",
+    }).populate("category.category");
+  } else {
+    result = await News.find({ "category.subCategory": String(id) })
+      .populate({
+        path: "category.category",
+      })
+      .populate("author");
+  }
+  console.log(id, result);
+  return result;
+};
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getNewsByUserFromDB = async (id: any) => {
   const result = await News.find({ author: id })
@@ -137,6 +155,7 @@ export const newsServices = {
   getSingleNewsFromDB,
   getNewsByLanguageFromDB,
   getNewsByCategoryFromDB,
+  getNewsBySubCategoryFromDB,
   getNewsByUserFromDB,
   updateNewsIntoDB,
   deleteNewsFromDB,

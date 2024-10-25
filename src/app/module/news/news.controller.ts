@@ -100,6 +100,23 @@ const getNewsByCategory = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getNewsBySubCategory = catchAsync(async (req, res) => {
+  const { sub_category_id } = req.params;
+  const { lang } = req.query;
+  const result = await newsServices.getNewsBySubCategoryFromDB(
+    sub_category_id,
+    lang as string
+  );
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "News retrived successfully!",
+    data: result,
+  });
+});
 
 const getNewsByCategoryIds = catchAsync(async (req, res) => {
   const { categories } = req.body;
@@ -188,6 +205,7 @@ export const newsControllers = {
   getNews,
   getNewsByLanguage,
   getNewsByCategory,
+  getNewsBySubCategory,
   getNewsByUser,
   updateNews,
   deleteNews,
