@@ -6,4 +6,6 @@ export interface TUser {
   img?: string;
   bio?: string;
   preApproved: boolean;
+  isActive: boolean;
+  isDeleted: boolean;
 }

@@ -8,7 +8,7 @@ const createUserIntoDB = async (payload: TUser) => {
 };
 
 const getAllUserFromDB = async () => {
-  const result = await User.find();
+  const result = await User.find({ isDeleted: false });
   return result;
 };
 const getSingleUserFromDB = async (email: string) => {
@@ -24,7 +24,7 @@ const updateUserIntoDB = async (id: string, payload: Partial<TUser>) => {
 };
 
 const deleteUserFromDB = async (id: string) => {
-  const result = await User.findByIdAndDelete({ _id: id });
+  const result = await User.findByIdAndUpdate({ _id: id }, { isDeleted: true });
   return result;
 };
 

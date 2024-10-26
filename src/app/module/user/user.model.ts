@@ -29,6 +29,8 @@ const UserSchema: Schema = new Schema<TUser>(
       enum: ["reporter", "admin"],
       required: true,
     },
+    isActive: { type: Boolean, default: true },
+    isDeleted: { type: Boolean, default: false },
     img: String,
     bio: String,
     preApproved: { type: Boolean, default: false },
