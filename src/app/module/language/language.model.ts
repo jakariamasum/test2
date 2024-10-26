@@ -21,6 +21,7 @@ const languageSchema = new Schema<TLanguage>(
     privacy: { type: String },
     seeAll: { type: String },
     terms: { type: String },
+    htmlBoxes: { type: [String] },
   },
   {
     timestamps: true,

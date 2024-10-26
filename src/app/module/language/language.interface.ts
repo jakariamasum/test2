@@ -11,4 +11,5 @@ export type TLanguage = {
   terms: string;
   privacy: string;
   orderPolicy: string;
+  htmlBoxes: [string];
 };

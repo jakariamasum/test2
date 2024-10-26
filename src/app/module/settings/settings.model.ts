@@ -18,6 +18,10 @@ const settingSchema = new Schema<TSetting>({
   detailsStyle: { type: String },
   header: { type: String },
   footer: { type: String },
+  facebook: { type: String },
+  whatsapp: { type: String },
+  twitter: { type: String },
+  pinterest: { type: String },
 });
 
 export const Setting = model<TSetting>("Setting", settingSchema);
