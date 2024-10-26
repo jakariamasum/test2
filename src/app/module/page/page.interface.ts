@@ -4,6 +4,7 @@ export type TFileds = {
 };
 export type TSectionData = {
   sectionTitle: string;
+  type: string;
   color: string;
   backgroundColor: string;
   desktopGrid: string;

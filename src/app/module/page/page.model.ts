@@ -11,6 +11,7 @@ const SectionDataSchema = new Schema<TSectionData>({
     type: String,
     default: "",
   },
+  type: { type: String },
   backgroundColor: { type: String },
   desktopGrid: { type: String },
   color: { type: String },
