@@ -24,6 +24,7 @@ const settingSchema = new Schema<TSetting>({
   pinterest: { type: String },
   headerBox: { type: String },
   bodyBox: { type: String },
+  waterMark: { type: String },
 });
 
 export const Setting = model<TSetting>("Setting", settingSchema);

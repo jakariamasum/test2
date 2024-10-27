@@ -21,4 +21,5 @@ export type TSetting = {
   pinterest: string;
   headerBox: string;
   bodyBox: string;
+  waterMark: string;
 };
