@@ -16,9 +16,12 @@ const getCategoriesFromDB = async (lang?: string) => {
   return result;
 };
 const getCategoriesByLangFromDB = async (lang: string) => {
+  console.log(lang);
   let result;
   if (lang === "all") {
     result = await Category.find({ type: "news" });
+  } else if (lang === "story" || lang === "video") {
+    result = await Category.find({ type: lang });
   } else {
     result = await Category.find({ lang, type: "news" });
   }

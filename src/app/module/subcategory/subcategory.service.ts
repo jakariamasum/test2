@@ -17,7 +17,12 @@ const getSubCategoryByCategoryFromDB = async (id: string) => {
   return result;
 };
 const getSubCategoryByLangFromDB = async (lang: string) => {
-  const result = await SubCategory.find({ lang, type: "news" });
+  let result;
+  if (lang === "story" || lang === "video") {
+    result = await SubCategory.find({ type: lang });
+  } else {
+    result = await SubCategory.find({ lang, type: "news" });
+  }
   return result;
 };
 const getVideoOrStoriesSubCategoryFromDB = async (type: string) => {

@@ -22,6 +22,8 @@ const settingSchema = new Schema<TSetting>({
   whatsapp: { type: String },
   twitter: { type: String },
   pinterest: { type: String },
+  headerBox: { type: String },
+  bodyBox: { type: String },
 });
 
 export const Setting = model<TSetting>("Setting", settingSchema);
