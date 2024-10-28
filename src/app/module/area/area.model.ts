@@ -13,6 +13,10 @@ const areaSchema = new Schema<TArea>(
       ref: "City",
       required: true,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,

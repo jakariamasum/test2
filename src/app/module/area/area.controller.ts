@@ -27,5 +27,38 @@ const getAllArea = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const updateaArea = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await areaServices.updateaAreaIntoDB(id, req.body);
+  console.log(result);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Areas updated successfully!",
+    data: result,
+  });
+});
+const updateaAreaStaus = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await areaServices.updateaAreaStatusIntoDB(id, req.body);
+  console.log(result);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Areas updated successfully!",
+    data: result,
+  });
+});
 
-export const areaControllers = { createArea, getAllArea };
+export const areaControllers = {
+  createArea,
+  getAllArea,
+  updateaArea,
+  updateaAreaStaus,
+};

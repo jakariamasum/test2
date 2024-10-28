@@ -16,6 +16,9 @@ router.post(
   areaControllers.createArea
 );
 
+router.put("/:id", areaControllers.updateaArea);
+router.put("/status/:id", areaControllers.updateaAreaStaus);
+
 //public routes
 router.get("/", areaControllers.getAllArea);
 
