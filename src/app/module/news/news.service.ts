@@ -13,7 +13,7 @@ const getNewsFromDB = async (lang: string, params: SearchParams) => {
     dateTo,
     author,
     category,
-    status = "published",
+    status = ["published", "pending"],
     page = 1,
     limit = 10,
     city,
@@ -27,7 +27,7 @@ const getNewsFromDB = async (lang: string, params: SearchParams) => {
   }
 
   if (status) {
-    query.status = status;
+    query.status = { $in: Array.isArray(status) ? status : [status] };
   }
 
   if (dateFrom || dateTo) {
