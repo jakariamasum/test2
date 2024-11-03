@@ -14,6 +14,7 @@ import { areaRoutes } from "../module/area/area.route";
 import { adsRoutes } from "../module/ads/ads.route";
 import { videoRoutes } from "../module/video/video.route";
 import { storiesRoutes } from "../module/stories/stories.route";
+import { AutoNewsRoutes } from "../module/auto-news/auto-news.route";
 
 const router = Router();
 
@@ -77,6 +78,10 @@ const moduleRoutes = [
   {
     path: "/story",
     route: storiesRoutes,
+  },
+  {
+    path: "/auto-news",
+    route: AutoNewsRoutes,
   },
 ];
 
