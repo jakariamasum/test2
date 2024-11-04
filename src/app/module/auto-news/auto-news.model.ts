@@ -10,6 +10,7 @@ const autoNewsSchema = new Schema<IAutoNews>(
     link: { type: String, required: true },
     status: { type: String },
     isDeleted: { type: Boolean, default: false },
+    lastCheck: { type: Date, default: new Date() },
   },
   {
     timestamps: true,

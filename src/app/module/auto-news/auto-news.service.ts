@@ -39,10 +39,16 @@ const deleteAutoNewsFromDB = async (id: string) => {
   return result;
 };
 
+const getLatestAutoNews = async () => {
+  const result = await AutoNews.find().sort({ createdAt: -1 });
+  return result[0];
+};
+
 export const AutoNewsServices = {
   createAutoNewsIntoDB,
   getAllAutoNewsFromDB,
   getSingleAutoNewsFromDB,
   updateAutoNewsFromDB,
   deleteAutoNewsFromDB,
+  getLatestAutoNews,
 };

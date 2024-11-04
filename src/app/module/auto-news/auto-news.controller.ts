@@ -26,6 +26,14 @@ const getAllAutoNews = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getLatestAutoNews = catchAsync(async (req, res) => {
+  const result = await AutoNewsServices.getLatestAutoNews();
+  console.log(result);
+  if (!result) {
+    throw new AppError(404, "No data found");
+  }
+  res.send(result);
+});
 const updateaAutoNews = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await AutoNewsServices.updateAutoNewsFromDB(id, req.body);
@@ -61,4 +69,5 @@ export const AutoNewsControllers = {
   getAllAutoNews,
   updateaAutoNews,
   deleteAutoNews,
+  getLatestAutoNews,
 };

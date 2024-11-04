@@ -18,5 +18,6 @@ router.delete(
 
 //public routes
 router.get("/", AutoNewsControllers.getAllAutoNews);
+router.get("/latest", AutoNewsControllers.getLatestAutoNews);
 
 export const AutoNewsRoutes = router;

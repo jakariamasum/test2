@@ -8,6 +8,7 @@ import express, { Application, Request, Response } from "express";
 import router from "./app/routes";
 import notFound from "./app/middlewares/notFound";
 import globalErrorHandler from "./app/middlewares/globalErrorhandler";
+import job from "./app/cron";
 
 const app: Application = express();
 
@@ -30,5 +31,8 @@ app.use(globalErrorHandler);
 
 //Not Found
 app.use(notFound);
+
+// cron job started
+job.start();
 
 export default app;

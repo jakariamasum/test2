@@ -8,4 +8,5 @@ export interface IAutoNews {
   link: string;
   duration: string;
   isDeleted: boolean;
+  lastCheck: Date;
 }
