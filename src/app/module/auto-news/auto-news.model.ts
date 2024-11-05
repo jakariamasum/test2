@@ -8,6 +8,7 @@ const autoNewsSchema = new Schema<IAutoNews>(
     subcategory: { type: Schema.Types.Mixed, ref: "Subcategory" },
     duration: { type: String },
     link: { type: String, required: true },
+    author: { type: Schema.Types.ObjectId, ref: "User" },
     status: { type: String },
     isDeleted: { type: Boolean, default: false },
     lastCheck: { type: Date, default: new Date() },
