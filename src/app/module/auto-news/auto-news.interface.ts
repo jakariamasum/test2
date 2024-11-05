@@ -9,4 +9,6 @@ export interface IAutoNews {
   duration: string;
   isDeleted: boolean;
   lastCheck: Date;
+  location: string | null;
+  author: Types.ObjectId;
 }
