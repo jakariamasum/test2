@@ -44,6 +44,11 @@ const getLatestAutoNews = async () => {
   return result[0];
 };
 
+const getAllAutoNews = async () => {
+  const result = await AutoNews.find().sort({ createdAt: -1 });
+  return result;
+};
+
 export const AutoNewsServices = {
   createAutoNewsIntoDB,
   getAllAutoNewsFromDB,
@@ -51,4 +56,5 @@ export const AutoNewsServices = {
   updateAutoNewsFromDB,
   deleteAutoNewsFromDB,
   getLatestAutoNews,
+  getAllAutoNews,
 };
