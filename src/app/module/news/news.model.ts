@@ -28,6 +28,7 @@ const NewsSchema = new Schema<TNews>(
     lang: { type: String },
     stories: { type: [StorySchema] },
     video: { type: String },
+    sourceBy: { type: String },
     status: {
       type: String,
       enum: ["published", "pending"],

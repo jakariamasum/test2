@@ -28,6 +28,7 @@ export interface TNews {
   waterMark?: string;
   stories?: TStories[];
   video?: string;
+  sourceBy?: string;
 }
 
 export interface SearchParams {
