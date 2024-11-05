@@ -149,6 +149,12 @@ const getVideoesFromDB = async () => {
   return result;
 };
 
+const getNewsBySourceFromDB = async (source: string) => {
+  const result = await News.find({ sourceBy: source })
+  return result;
+};
+
+
 export const newsServices = {
   createNewsIntoDB,
   getNewsFromDB,
@@ -161,4 +167,5 @@ export const newsServices = {
   deleteNewsFromDB,
   getStoriesFromDB,
   getVideoesFromDB,
+  getNewsBySourceFromDB,
 };
