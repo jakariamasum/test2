@@ -11,5 +11,4 @@ export interface IAutoNews {
   isDeleted: boolean;
   lastCheck: Date;
   location: string | null;
-  author: Types.ObjectId;
 }

@@ -12,7 +12,6 @@ const autoNewsSchema = new Schema<IAutoNews>(
     status: { type: String },
     isDeleted: { type: Boolean, default: false },
     lastCheck: { type: Date, default: new Date() },
-    author: { type: Schema.Types.ObjectId, required: true },
     location: { type: String, default: null },
   },
   {
