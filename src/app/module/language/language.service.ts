@@ -1,9 +1,33 @@
+import mongoose from "mongoose";
+import { TPage } from "../page/page.interface";
+import { Page } from "../page/page.model";
 import { TLanguage } from "./language.interface";
 import { Language } from "./language.model";
 
 const createLanguageIntoDB = async (payload: TLanguage) => {
-  const result = await Language.create(payload);
-  return result;
+  const session = await mongoose.startSession();
+
+  try {
+    session.startTransaction();
+    const newLanguage = await Language.create([payload], { session });
+
+    const pageInfo: TPage = {
+      title: newLanguage[0].title,
+      language: newLanguage[0].language_code,
+      rows: [],
+    };
+
+    await Page.create(pageInfo);
+    await session.commitTransaction();
+
+    return newLanguage[0];
+  } catch (error) {
+    await session.abortTransaction();
+    console.error("Error creating language:", error);
+    throw new Error("Failed to create language");
+  } finally {
+    session.endSession();
+  }
 };
 const getAllLanguageFromDB = async (lang?: string) => {
   let result;
