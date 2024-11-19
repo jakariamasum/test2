@@ -24,5 +24,6 @@ const subCategorySchema = new mongoose_1.Schema({
         required: true,
     },
     type: { type: String, required: true },
+    isDeleted: { type: Boolean, default: false },
 });
 exports.SubCategory = (0, mongoose_1.model)("Subcategory", subCategorySchema);

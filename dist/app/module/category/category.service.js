@@ -18,10 +18,10 @@ const createCategoryIntoDB = (payload) => __awaiter(void 0, void 0, void 0, func
 const getCategoriesFromDB = (lang) => __awaiter(void 0, void 0, void 0, function* () {
     let result;
     if (lang === "all") {
-        result = yield category_model_1.Category.find();
+        result = yield category_model_1.Category.find({ isDeleted: false });
     }
     else {
-        result = yield category_model_1.Category.find({ type: "news" });
+        result = yield category_model_1.Category.find({ type: "news", isDeleted: false });
     }
     return result;
 });
@@ -29,18 +29,18 @@ const getCategoriesByLangFromDB = (lang) => __awaiter(void 0, void 0, void 0, fu
     console.log(lang);
     let result;
     if (lang === "all") {
-        result = yield category_model_1.Category.find({ type: "news" });
+        result = yield category_model_1.Category.find({ type: "news", isDeleted: false });
     }
     else if (lang === "story" || lang === "video") {
-        result = yield category_model_1.Category.find({ type: lang });
+        result = yield category_model_1.Category.find({ type: lang, isDeleted: false });
     }
     else {
-        result = yield category_model_1.Category.find({ lang, type: "news" });
+        result = yield category_model_1.Category.find({ lang, type: "news", isDeleted: false });
     }
     return result;
 });
 const getVideoOrStoriesCategoryFromDB = (type) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield category_model_1.Category.find({ type: type });
+    const result = yield category_model_1.Category.find({ type: type, isDeleted: false });
     return result;
 });
 const getSingleCategoryFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,7 +54,7 @@ const updateCategoryIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, 
     return result;
 });
 const deleteCategoryFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield category_model_1.Category.findByIdAndDelete({ _id: id });
+    const result = yield category_model_1.Category.findByIdAndUpdate({ _id: id }, { isDeleted: true }, { new: true });
     return result;
 });
 exports.categoryServices = {

@@ -20,26 +20,30 @@ const createSubCategoryIntoDB = (payload) => __awaiter(void 0, void 0, void 0, f
     return result;
 });
 const getSubCategoryFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield subcategory_model_1.SubCategory.find({ type: "news" });
+    const result = yield subcategory_model_1.SubCategory.find({ type: "news", isDeleted: false });
     return result;
 });
 const getSubCategoryByCategoryFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const objectId = new mongoose_1.default.Types.ObjectId(id);
-    const result = yield subcategory_model_1.SubCategory.find({ category: objectId, type: "news" });
+    const result = yield subcategory_model_1.SubCategory.find({
+        category: objectId,
+        type: "news",
+        isDeleted: false,
+    });
     return result;
 });
 const getSubCategoryByLangFromDB = (lang) => __awaiter(void 0, void 0, void 0, function* () {
     let result;
     if (lang === "story" || lang === "video") {
-        result = yield subcategory_model_1.SubCategory.find({ type: lang });
+        result = yield subcategory_model_1.SubCategory.find({ type: lang, isDeleted: false });
     }
     else {
-        result = yield subcategory_model_1.SubCategory.find({ lang, type: "news" });
+        result = yield subcategory_model_1.SubCategory.find({ lang, type: "news", isDeleted: false });
     }
     return result;
 });
 const getVideoOrStoriesSubCategoryFromDB = (type) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield subcategory_model_1.SubCategory.find({ type: type });
+    const result = yield subcategory_model_1.SubCategory.find({ type: type, isDeleted: false });
     console.log(type, result);
     return result;
 });
@@ -50,7 +54,7 @@ const updateSubCategoryIntoDB = (id, payload) => __awaiter(void 0, void 0, void 
     return result;
 });
 const deleteSubCategoryFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield subcategory_model_1.SubCategory.findByIdAndDelete({ _id: id });
+    const result = yield subcategory_model_1.SubCategory.findByIdAndUpdate({ _id: id }, { isDeleted: true });
     return result;
 });
 exports.SubCategoryServices = {

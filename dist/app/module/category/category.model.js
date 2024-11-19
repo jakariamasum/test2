@@ -9,6 +9,7 @@ const CategorySchema = new mongoose_1.Schema({
     img: { type: String },
     position: { type: Number },
     type: { type: String },
+    isDeleted: { type: Boolean, default: false },
 }, {
     timestamps: true,
 });
